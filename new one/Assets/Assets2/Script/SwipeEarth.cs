@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SmoothDragEarth : MonoBehaviour
+public class SwipeEarth : MonoBehaviour
 {
-    private Vector3 touchStartPos;
-    private Vector3 previousTouchPos;
-    private Vector3 rotationAxis = new Vector3(0, 0, 1); // Z-axis rotation
-    private Quaternion initialRotation;
+    public float rotationSpeed;
+    public float pixelsToDetect;
+    public float rotationLerpSpeed = 5f; // Adjust this for smoother rotation
 
-    [SerializeField] private float dragSpeed = 5f;
+    private bool fingerDown = false;
+    private bool rotating = false;
+    private Vector3 targetEuler;
+    private Vector2 startpos;
+    private Quaternion initialRotation;
+    private Quaternion targetRotation;
 
     private void Start()
     {
@@ -22,41 +24,42 @@ public class SmoothDragEarth : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            switch (touch.phase)
+            if (Input.touches[0].phase == TouchPhase.Began)
             {
-                case TouchPhase.Began:
-                    OnTouchBegin(touch.position);
-                    break;
-                case TouchPhase.Moved:
-                    OnTouchMove(touch.position);
-                    break;
-                case TouchPhase.Ended:
-                case TouchPhase.Canceled:
-                    OnTouchEnd();
-                    break;
+
+                startpos = touch.position;
+                fingerDown = true;
+                rotating = false;
+            }
+             if (Input.touches[0].phase == TouchPhase.Moved && fingerDown)
+            {
+                float deltaX = Input.touches[0].position.x - startpos.x;
+
+                if (!rotating && Mathf.Abs(deltaX) > pixelsToDetect)
+                {
+                    rotating = true;
+
+                    targetEuler = new Vector3(0, 0, -deltaX * rotationSpeed);
+                    targetRotation = initialRotation * Quaternion.Euler(targetEuler);
+
+                }
+            }
+            if (Input.touches[0].phase == TouchPhase.Ended)
+            {
+
+                fingerDown = false;
             }
         }
-    }
 
-    private void OnTouchBegin(Vector2 touchPosition)
-    {
-        touchStartPos = touchPosition;
-        previousTouchPos = touchPosition;
-    }
+        if (rotating)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 3f);
 
-    private void OnTouchMove(Vector2 touchPosition)
-    {
-        Vector2 touchDelta = touchStartPos - previousTouchPos;
-        float rotationAmount = -touchDelta.x * dragSpeed * Time.deltaTime;
-
-        Quaternion rotationDelta = Quaternion.AngleAxis(rotationAmount, rotationAxis);
-        transform.rotation = rotationDelta * transform.rotation;
-
-        previousTouchPos = touchPosition;
-    }
-
-    private void OnTouchEnd()
-    {
-        // Implement any necessary cleanup or actions after the drag ends
+            // Check if rotation has reached the target within a small threshold
+            if (Quaternion.Angle(transform.rotation, targetRotation) < 1f)
+            {
+                rotating = false;
+            }
+        }
     }
 }
