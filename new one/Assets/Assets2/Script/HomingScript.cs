@@ -13,7 +13,11 @@ public class HomingScript : MonoBehaviour
     public Transform planet;
     private EnemyManager enemyManager;
     private GameObject explosionGameObject;
+    private GameObject missile;
+    private Vector3 shootpoint;
     float timer = 0;
+    public bool isMissileDestroyed;
+    public bool isRotating;
     
     bool setTarget = false;
 
@@ -21,7 +25,7 @@ public class HomingScript : MonoBehaviour
     {
         
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
-        rb = gameObject.GetComponent<Rigidbody>();
+        rb = gameObject.GetComponentInChildren<Rigidbody>();
         planet = GameObject.Find("Earth").transform;
         explosionGameObject = GameObject.Find("ExplosionBase");
 
@@ -29,19 +33,31 @@ public class HomingScript : MonoBehaviour
 
     void Update()
     {
-        foreach(GameObject e in enemyManager.enemies)
+        Debug.DrawRay(transform.position, transform.forward);
+        Debug.DrawRay(transform.position, -transform.right);
+
+        foreach (GameObject e in enemyManager.enemies)
         {
-            if (Vector3.Distance(transform.position, e.transform.position) < 4f)
-            {
-                setTarget = true;
-                Vector3 directionToTarget = e.transform.position - transform.position;
-                Quaternion targetRotation = Quaternion.LookRotation(directionToTarget, transform.up);
-                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime));
-                rb.velocity = transform.forward * speed;
-            }
+            
+                if (Vector3.Distance(transform.position, e.transform.position) < 4f && e != null)
+                {
+                    Vector3 directionToTarget = e.transform.position - transform.position;
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget,transform.up);
+
+                        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 4 *  rotationSpeed * Time.deltaTime));
+                        setTarget = true;
+                        rb.velocity = speed * transform.forward;
+
+
+ }
+
+        }
+
 
             
-        }
+
+
+        
 
         if (!setTarget)
         {
@@ -50,32 +66,64 @@ public class HomingScript : MonoBehaviour
 
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    public void LaunchMissileAgain(GameObject prefab)
     {
-       if(collision.gameObject.tag == "Enemy")
+      
+            missile = prefab;
+        isMissileDestroyed = false;
+
+    }
+
+    public void LaunchMissilePosition(Vector3 newpos)
+    {
+        shootpoint = newpos;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag =="Enemy")
         {
-            Vector3 collisionPoint = collision.contacts[0].point;
-            explosionGameObject.transform.position = collisionPoint;
-            Destroy(gameObject);
+            explosionGameObject.transform.position = other.gameObject.transform.position;
+            isMissileDestroyed = true;
+
             Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
             ParticleSystem particleEffect = explosionGameObject.GetComponent<ParticleSystem>();
             particleEffect.Play();
-            foreach(Collider collider in colliders)
+            foreach (Collider collider in colliders)
             {
                 if (collider.tag == "Enemy")
                 {
-
-                    
                     enemyManager.enemies.Remove(collider.gameObject);
-                    Destroy(collider.gameObject,5f);
+                    Destroy(collider.gameObject);
+
                     setTarget = false;
 
                 }
-                    
+
+                if(collider.tag == "Missile")
+                {
+                    setTarget = false;
+                }
             }
+
+            Destroy(gameObject);
 
         }
     }
 
+    
+
+    public void setInitialRotation(Quaternion rotation)
+    {
+        transform.rotation = rotation;
+    }
+    public bool getStatusMissle()
+    {
+        return isMissileDestroyed;
+    }
+
+    public void setStatusMissile(bool value)
+    {
+        isMissileDestroyed = value;
+    }
 }

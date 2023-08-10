@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MissileLookScript : MonoBehaviour
 {
@@ -10,36 +12,25 @@ public class MissileLookScript : MonoBehaviour
     public Transform shootPoint;
     public float reload;
     bool isMissileDestroyed = false;
-   
+    private GameObject missile;
+    private float timer = 0f;
+
     void Start()
     {
         Instantiate(Missileprefab, shootPoint.position, Quaternion.identity);
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.LookAt(target);
-
-        if(reload > 2f && isMissileDestroyed)
+        if(timer > 8f)
         {
-            Instantiate(Missileprefab, shootPoint.position, Quaternion.identity);
-            reload = 0;
+            missile = Instantiate(Missileprefab, shootPoint.position, Quaternion.identity);
+            missile.GetComponent<HomingScript>().setInitialRotation(shootPoint.rotation);
+            timer = 0f;
         }
         else
         {
-            reload += Time.deltaTime;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            Destroy(gameObject);
-            isMissileDestroyed = true;
-            
+            timer += Time.deltaTime;
         }
     }
 }

@@ -51,6 +51,7 @@ public class TurretMain : MonoBehaviour
             {
                 GameObject newBullet = Instantiate(prefabbbb, bulletPoint.position, Quaternion.identity);
                 newBullet.GetComponent<bulletScript>().setInitialDirection(transform.forward);
+                newBullet.GetComponent<bulletScript>().setRotation(transform.rotation);
                 recoilTimer = 0f;
             }
             else

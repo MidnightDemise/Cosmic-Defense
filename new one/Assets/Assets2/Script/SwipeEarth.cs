@@ -26,12 +26,11 @@ public class SwipeEarth : MonoBehaviour
 
             if (Input.touches[0].phase == TouchPhase.Began)
             {
-
                 startpos = touch.position;
                 fingerDown = true;
                 rotating = false;
             }
-             if (Input.touches[0].phase == TouchPhase.Moved && fingerDown)
+            if (Input.touches[0].phase == TouchPhase.Moved && fingerDown)
             {
                 float deltaX = Input.touches[0].position.x - startpos.x;
 
@@ -39,21 +38,22 @@ public class SwipeEarth : MonoBehaviour
                 {
                     rotating = true;
 
-                    targetEuler = new Vector3(0, 0, -deltaX * rotationSpeed);
+                    // Adjust rotation direction based on the sign of deltaX
+                    float rotationDirection = Mathf.Sign(deltaX);
+                    targetEuler = new Vector3(0, 0, -rotationDirection * rotationSpeed);
                     targetRotation = initialRotation * Quaternion.Euler(targetEuler);
-
                 }
             }
             if (Input.touches[0].phase == TouchPhase.Ended)
             {
-
                 fingerDown = false;
             }
         }
 
         if (rotating)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 3f);
+            initialRotation = transform.rotation; // Update initialRotation
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationLerpSpeed);
 
             // Check if rotation has reached the target within a small threshold
             if (Quaternion.Angle(transform.rotation, targetRotation) < 1f)

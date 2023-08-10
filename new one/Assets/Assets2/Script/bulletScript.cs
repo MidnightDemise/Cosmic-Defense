@@ -33,6 +33,11 @@ public class bulletScript : MonoBehaviour
         
     }
 
+    public void setRotation(Quaternion rotation)
+    {
+        transform.rotation = rotation; 
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
