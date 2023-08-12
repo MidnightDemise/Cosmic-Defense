@@ -48,9 +48,11 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
        
+        
+   
 
-       
-        if(timer > preparationTimer)
+
+        if (timer > preparationTimer)
         {
             spawnWave1();
             waveTimer += Time.deltaTime;
@@ -91,6 +93,7 @@ public class EnemyManager : MonoBehaviour
         spawnGreenShip(1, DropRateOfGreen);
         spawnYellowShip(1, DropRateOfYellow);
         spawnRedShip(1, DropRateOfRed);
+       
 
     }
 

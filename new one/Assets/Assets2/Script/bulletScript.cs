@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class bulletScript : MonoBehaviour
@@ -37,6 +38,35 @@ public class bulletScript : MonoBehaviour
     {
         transform.rotation = rotation; 
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("GreenShip"))
+        {
+            Destroy(gameObject);
+            other.GetComponent<GreenSip>().DamageShip(50);
+        }
+        else if(other.CompareTag("YellowShip"))
+        {
+            Destroy(gameObject);
+            other.GetComponent<yelloShip>().DamageShip(50);
+        }
+        else if(other.CompareTag("RedShip"))
+        {
+            Destroy(gameObject);
+            other.GetComponent<RedShip>().DamageShip(50);
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 
     private void OnCollisionEnter(Collision collision)

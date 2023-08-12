@@ -14,6 +14,9 @@ TagManager:
   - bullet
   - ElectricLine
   - Missile
+  - GreenShip
+  - YellowShip
+  - RedShip
   layers:
   - Default
   - TransparentFX

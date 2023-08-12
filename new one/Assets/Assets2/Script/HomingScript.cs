@@ -38,26 +38,24 @@ public class HomingScript : MonoBehaviour
 
         foreach (GameObject e in enemyManager.enemies)
         {
-            
-                if (Vector3.Distance(transform.position, e.transform.position) < 4f && e != null)
+            if(e != null)
+            {
+                if (Vector3.Distance(transform.position, e.transform.position) < 4f)
                 {
                     Vector3 directionToTarget = e.transform.position - transform.position;
-                    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget,transform.up);
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget, transform.up);
 
-                        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 4 *  rotationSpeed * Time.deltaTime));
-                        setTarget = true;
-                        rb.velocity = speed * transform.forward;
+                    rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 4 * rotationSpeed * Time.deltaTime));
+                    setTarget = true;
+                    rb.velocity = speed * transform.forward;
 
 
- }
+                }
+            }
+            
+               
 
         }
-
-
-            
-
-
-        
 
         if (!setTarget)
         {
@@ -81,7 +79,7 @@ public class HomingScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag =="Enemy")
+        if(other.gameObject.tag =="GreenShip" || other.gameObject.tag == "YellowShip" || other.gameObject.tag =="RedShip")
         {
             explosionGameObject.transform.position = other.gameObject.transform.position;
             isMissileDestroyed = true;
@@ -91,16 +89,29 @@ public class HomingScript : MonoBehaviour
             particleEffect.Play();
             foreach (Collider collider in colliders)
             {
-                if (collider.tag == "Enemy")
+                if (collider.tag == "GreenShip")
                 {
-                    enemyManager.enemies.Remove(collider.gameObject);
-                    Destroy(collider.gameObject);
+                    collider.GetComponent<GreenSip>().DamageShip(40);
+                 //   enemyManager.enemies.Remove(collider.gameObject);
+                   // Destroy(collider.gameObject);
 
                     setTarget = false;
 
                 }
+                
+                if(collider.tag == "YellowShip")
+                {
+                    collider.GetComponent<yelloShip>().DamageShip(40);
 
-                if(collider.tag == "Missile")
+                }
+
+                if (collider.tag == "RedShip")
+                {
+                    collider.GetComponent<RedShip>().DamageShip(40);
+
+                }
+
+                if (collider.tag == "Missile")
                 {
                     setTarget = false;
                 }

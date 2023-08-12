@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 6980921519986826349}
   m_Layer: 0
   m_Name: Yellow ship
-  m_TagString: Enemy
+  m_TagString: YellowShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,7 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71d31f29484c4a40b2dc5b61a931855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
   yellowMoveSpeed: 3
   gravityBall: {fileID: 5299239017068936263, guid: e4c3b4c3127df8a4ca848e31ac19d528,
     type: 3}

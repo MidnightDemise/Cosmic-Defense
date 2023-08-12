@@ -7,7 +7,7 @@ public class GravityBallScript : MonoBehaviour
     private Rigidbody rb;
     Vector3 initialDirection;
     private EnemyManager enemyManager;
-
+    Vector3 dir;
     private GameObject enemy;    
     public Transform planet;
     private Dictionary<GameObject, Vector3> originalVelocities = new Dictionary<GameObject, Vector3>();
@@ -30,7 +30,7 @@ public class GravityBallScript : MonoBehaviour
     {
         if (initialDirection != null)
         {
-            transform.position += initialDirection * 15f * Time.deltaTime;
+            transform.position += initialDirection * 5f * Time.deltaTime;
         }
         GravityAnimation();
 
@@ -40,7 +40,7 @@ public class GravityBallScript : MonoBehaviour
         {
             if (enemy != null)
             {
-                if (enemy.transform.position.y > 40)
+                if (enemy.transform.position.y > 40 || enemy.transform.position.y < -40)
                 {
                     objectsToRemove.Add(enemy);
                 }
@@ -60,30 +60,33 @@ public class GravityBallScript : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(Mathf.Sin(2 * Time.time)), 1);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+ 
+
+    private void OnTriggerEnter(Collider other)
     {
         Rigidbody rb;
-        if (collision.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "GreenShip" || other.gameObject.tag =="YellowShip" || other.gameObject.tag == "RedShip")
         {
             //   Vector3 ForcePoint = collision.contacts[0].point;
 
             //  foreach (GameObject enemy in enemyManager.enemies)
             //{
-            if (!gameObjects.Contains(collision.gameObject));
+            if (!gameObjects.Contains(other.gameObject)) ;
             {
-                gameObjects.Add(collision.gameObject);
+                gameObjects.Add(other.gameObject);
 
-                rb = collision.gameObject.GetComponent<Rigidbody>();
-                originalVelocities[collision.gameObject] = rb.velocity;
+                rb = other.gameObject.GetComponent<Rigidbody>();
+                originalVelocities[other.gameObject] = rb.velocity;
                 //     Vector3 blackHoleVector = ForcePoint - enemy.transform.position;
                 rb.velocity = Vector3.zero;
                 //    isBlackHoleApplied = true;
                 //  isBlackHoleApplied2 = true;
                 rb.mass = 4;
-                rb.AddForce(Vector3.up * 500f, ForceMode.Acceleration);
-                
+                rb.AddForce( initialDirection * 500f, ForceMode.Acceleration);
 
-              
+
+
 
             }
             //  if (Vector3.Distance(ForcePoint, enemy.transform.position) < 2f)
@@ -96,8 +99,8 @@ public class GravityBallScript : MonoBehaviour
             Destroy(gameObject);
 
         }
-        
     }
+   
     
 
     // Rest of your code...

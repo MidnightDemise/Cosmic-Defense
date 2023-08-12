@@ -9,9 +9,10 @@ public class RedShip: MonoBehaviour
     private Transform planet;
     private Rigidbody rb;
     public float RedMoveSpeed = 5f;
-    public int health;
+    private float health = 100;
     public GameObject gravityBall;
     private EnemyManager enemyManager;
+    private bool isStunned;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class RedShip: MonoBehaviour
     void Update()
     {
 
-        if (!GravityBallScript.gameObjects.Contains(gameObject))
+        if (!GravityBallScript.gameObjects.Contains(gameObject) && !isStunned)
         {
 
             Vector3 dir = planet.position - transform.position;
@@ -36,7 +37,10 @@ public class RedShip: MonoBehaviour
    
 
 
-
+        if(health < 0)
+        {
+            Destroy(gameObject);
+        }
 
     }
 
@@ -47,6 +51,10 @@ public class RedShip: MonoBehaviour
         health = newHealth;
     }
 
+    public void DamageShip(float damage)
+    {
+        health -= damage;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -63,6 +71,16 @@ public class RedShip: MonoBehaviour
             rb.AddForce(Vector3.up * 500f, ForceMode.Acceleration);
             GravityBallScript.gameObjects.Add(collision.gameObject);
         }
+    }
+
+    public void setStun(bool value)
+    {
+        isStunned = value;
+    }
+
+    public bool getStun()
+    {
+        return isStunned;
     }
 
 }

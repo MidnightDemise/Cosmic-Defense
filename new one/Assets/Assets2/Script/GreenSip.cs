@@ -8,11 +8,12 @@ public class GreenSip : MonoBehaviour
 {
 
     public float greenMoveSpeed = 5f;
-    public int health;
+    private float health = 50;
     private Transform Target;
     private Rigidbody rb;
     public GameObject gravityBall;
     public static Vector3  originalVelocity;
+    private bool isStunned;
 
     private EnemyManager enemyManager;
     // Start is called before the first frame update
@@ -36,34 +37,54 @@ public class GreenSip : MonoBehaviour
             originalVelocity = rb.velocity;
         }
 
-        
-        
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
 
     }
 
 
-    public void SetGreenShipHealth(int newHealth)
+    public void SetGreenShipHealth(float newHealth)
     {
         health = newHealth;
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    public void DamageShip(float damage)
     {
-        if(collision.gameObject.tag == "Node")
-        {
-            Destroy(gameObject,01f);
-        }
-
-        if(collision.gameObject.tag == "Enemy")
-        {
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero;
-            rb.AddForce(Vector3.up * 500f, ForceMode.Acceleration);
-            GravityBallScript.gameObjects.Add(collision.gameObject);
-        }
+        health -= damage;
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Node"))
+        {
+            Destroy(gameObject);
+        }
+    }
+   // private void OnCollisionEnter(Collision collision)
+    //{
+       // if(collision.gameObject.tag == "Enemy")
+        //{
+          //  Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+         //   rb.velocity = Vector3.zero;
+           // rb.AddForce(Vector3.up * 500f, ForceMode.Acceleration);
+            //GravityBallScript.gameObjects.Add(collision.gameObject);
+       // }
+    //}
+
+
+    public void setStun(bool value)
+    {
+        isStunned = value;
+    }
+
+    public bool getStun()
+    {
+        return isStunned;
+    }
 
 
 }

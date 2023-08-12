@@ -7,13 +7,13 @@ public class yelloShip : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public int health;
+    private float health = 75;
     public float yellowMoveSpeed = 3f;
     private Transform planet;
     private Rigidbody rb;
     public GameObject gravityBall;
     private EnemyManager enemyManager;
-
+    private bool isStunned;
 
     void Start()
     {
@@ -33,7 +33,12 @@ public class yelloShip : MonoBehaviour
             Vector3 dir = planet.position - transform.position;
 
             rb.velocity = dir.normalized * 2f;
+            
+        }
 
+        if(health <= 0)
+        {
+            Destroy(gameObject);
         }
         
 
@@ -45,6 +50,11 @@ public class yelloShip : MonoBehaviour
         health = newhealth;
     }
 
+
+    public void DamageShip(float damage)
+    {
+        health -= damage;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Node")
@@ -53,6 +63,18 @@ public class yelloShip : MonoBehaviour
             Destroy(gameObject,0.1f);
         }
     }
+
+
+    public void setStun(bool value)
+    {
+        isStunned = value;
+    }
+
+    public bool getStun()
+    {
+        return isStunned;
+    }
+
 
 }
 

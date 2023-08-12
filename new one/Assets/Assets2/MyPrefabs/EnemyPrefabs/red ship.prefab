@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 4157644385411386077}
   m_Layer: 0
   m_Name: red ship
-  m_TagString: Enemy
+  m_TagString: RedShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,7 +553,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RedMoveSpeed: 5
-  health: 0
   gravityBall: {fileID: 5299239017068936263, guid: e4c3b4c3127df8a4ca848e31ac19d528,
     type: 3}
 --- !u!54 &-7362958825072590323

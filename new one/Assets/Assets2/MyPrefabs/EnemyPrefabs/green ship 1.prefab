@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: -2028929358238465133}
   m_Layer: 0
   m_Name: green ship 1
-  m_TagString: Enemy
+  m_TagString: GreenShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   greenMoveSpeed: 5
-  health: 0
+  health: 50
   gravityBall: {fileID: 5299239017068936263, guid: e4c3b4c3127df8a4ca848e31ac19d528,
     type: 3}
 --- !u!54 &6593213709600629115

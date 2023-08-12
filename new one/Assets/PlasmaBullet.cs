@@ -26,4 +26,34 @@ public class PlasmaBullet : MonoBehaviour
     {
         transform.position += direction * 15f * Time.deltaTime ;
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger working");
+        if(other.CompareTag("GreenShip"))
+        {
+            other.GetComponent<GreenSip>().DamageShip(70);
+
+        }
+
+        if (other.CompareTag("YellowShip"))
+        {
+            other.GetComponent<yelloShip>().DamageShip(70);
+
+
+        }
+
+        if (other.CompareTag("RedShip"))
+        {
+
+            other.GetComponent<RedShip>().DamageShip(70);
+
+
+        }
+    }
+
+
+
+    
 }

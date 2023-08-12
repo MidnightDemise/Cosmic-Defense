@@ -14,7 +14,10 @@ public class LaserTowerScript : MonoBehaviour
     public GameObject bulletPrefab;
     private LineRenderer lineRenderer;
     float reloadTimer = 0;
-
+    private int damageMultiplier;
+    private List<Collider> colliders = new List<Collider>();
+    private Collider[] tempColliders;
+    private List<Vector3> positionsOfContacts = new List<Vector3>();                                   
 
     public List<GameObject> lineRenderers = new List<GameObject>(4);
 
@@ -39,56 +42,108 @@ public class LaserTowerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        positionsOfContacts.Clear();
         laserRanges.Clear(); // Clear the list at the beginning of each frame
 
         foreach (var enemy in enemyManager.enemies)
         {
-            if(enemy != null)
+            if (enemy != null)
             {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy <= 8f)
                 {
                     laserRanges.Add(enemy.transform);
                 }
-                else
+                
+            }
+            else
+            { foreach (GameObject line in lineRenderers)
                 {
-                    foreach (GameObject line in lineRenderers)
-                    {
-                        line.GetComponent<LineRenderer>().enabled = false;
-                    }
+                    line.GetComponent<LineRenderer>().enabled = false;
                 }
             }
-           
+
         }
         Add4Enemies();
 
 
-      //  if(reloadTimer > 0.1f)
-       // {
-            for (int i = 0; i < EnemyRanges.Count; i++)
+        //  if(reloadTimer > 0.1f)
+        // {
+        for (int i = 0; i < EnemyRanges.Count; i++)
+        {
+            LineRenderer line = lineRenderers[i].GetComponent<LineRenderer>();
+            line.SetPosition(0, laserPoint.position);
+
+            line.SetPosition(1, EnemyRanges[i].transform.position);
+
+            if(line.GetPosition(1) != null)
             {
-                LineRenderer line = lineRenderers[i].GetComponent<LineRenderer>();
-                line.SetPosition(0, laserPoint.position);
+                positionsOfContacts.Add(line.GetPosition(1));
 
-                line.SetPosition(1, EnemyRanges[i].transform.position);
-          
-                line.enabled = true;
-                
-              //  GameObject bulletObj = Instantiate(bulletPrefab, laserPoint.position, Quaternion.identity);
-               // LaserBulletScript bulletScript = bulletObj.GetComponent<LaserBulletScript>();
-               // bulletScript.targetEnemy = EnemyRanges[i]; // Assign the target enemy to the bullet
-                //reloadTimer = 0f;
             }
-        //}
-     //   else
-      //  {
-          //  reloadTimer += Time.deltaTime;
-       // }
+
+
+            line.enabled = true;
+
+            //  GameObject bulletObj = Instantiate(bulletPrefab, laserPoint.position, Quaternion.identity);
+            // LaserBulletScript bulletScript = bulletObj.GetComponent<LaserBulletScript>();
+            // bulletScript.targetEnemy = EnemyRanges[i]; // Assign the target enemy to the bullet
+            //reloadTimer = 0f;
+        }
+
+        foreach(Vector3 pos in positionsOfContacts)
+        {
+            if(pos != null)
+            {
+                tempColliders = Physics.OverlapSphere(pos, 0.1f);
+                colliders.Add(tempColliders[0]);
+
+            }
+        }
         
+        foreach (Collider collider in colliders)
+        {
+            if (collider != null)
+            {
+                if (collider.gameObject.tag == "GreenShip")
+                {
+                    
+                    collider.GetComponent<GreenSip>().DamageShip(0.3f);
+                    
+                   
+                }
+
+
+                if (collider.gameObject.tag == "YellowShip")
+                {
+                    collider.GetComponent<yelloShip>().DamageShip(0.3f);
+
+                }
+
+                if (collider.gameObject.tag == "RedShip")
+                {
+                    collider.GetComponent<RedShip>().DamageShip(0.3f);
+
+                }
+
+                //}
+                //   else
+                //  {
+                //  reloadTimer += Time.deltaTime;
+                // }
+
+            }
+
+
+
+            
+
+
+
+        }
+
+        colliders.Clear();
     }
-
-
 
     void Add4Enemies()
     {
@@ -101,12 +156,10 @@ public class LaserTowerScript : MonoBehaviour
         int count = Mathf.Min(laserRanges.Count, 4);
 
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             EnemyRanges.Add(laserRanges[i]);
         }
     }
-
-   
-
+    
 }
