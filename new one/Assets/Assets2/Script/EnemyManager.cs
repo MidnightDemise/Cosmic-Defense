@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -31,11 +32,15 @@ public class EnemyManager : MonoBehaviour
     public int DropRateOfGreen = 800;
     public int DropRateOfYellow = 1200;
     public int DropRateOfRed = 1500;
+
+    //events
+    LevelCompleteEvent levelCompleteEvent = new LevelCompleteEvent();
+    private bool levelComplete = false;
    
     
     void Start()
     {
-       
+        EventManager.AddLevelCompleteEventInvoker(this);
         GameObject[] spawnObjects = GameObject.FindGameObjectsWithTag("spawnPoint");
 
         for(int i = 0; i < spawnObjects.Length; i++)
@@ -47,31 +52,29 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        
-   
+        timer += Time.deltaTime;
 
-
-        if (timer > preparationTimer)
-        {
+        if (timer > preparationTimer && timer <= 60f)
+        {   
             spawnWave1();
-            waveTimer += Time.deltaTime;
+            timer += Time.deltaTime;
         }
-        else if(waveTimer >= 30f)
+        else if(timer >= 60f && timer <= 90f)
         {
             DropRateOfGreen = 40000;
             DropRateOfYellow =20200;
             DropRateOfRed = 10500;
            spawnWave2();
+            timer += Time.deltaTime;
         }
-        else if(waveTimer > 60f)
+        else if(timer >= 90f && !levelComplete)
         {
             spawnWave3();
-        }
-        else
-        {
-            timer += Time.deltaTime;
-
+            if(timer >= 120f)
+            {
+                levelCompleteEvent.Invoke();
+                levelComplete = true;
+            }
         }
     }
 
@@ -148,10 +151,13 @@ public class EnemyManager : MonoBehaviour
         GameObject enemy = Instantiate(prefab, spawnPoints[randomIndex].position, Quaternion.identity);
 
         enemies.Add(enemy);
-
     }
 
 
+    public void AddLevelCompleteEventListener(UnityAction listener)
+    {
+        levelCompleteEvent.AddListener(listener);
+    }
    
 
 

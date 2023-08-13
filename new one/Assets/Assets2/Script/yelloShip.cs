@@ -7,7 +7,7 @@ public class yelloShip : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private float health = 75;
+    public float health;
     public float yellowMoveSpeed = 3f;
     private Transform planet;
     private Rigidbody rb;
@@ -20,6 +20,7 @@ public class yelloShip : MonoBehaviour
         planet = GameObject.FindWithTag("planet").transform;
         rb = gameObject.GetComponent<Rigidbody>();
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
+        health = ConfigurationUtils.YellowEnemyHealth;
 
     }
 

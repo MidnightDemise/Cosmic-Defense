@@ -5,10 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Assets2/Scenes/MainMenu.unity
+    guid: 8bda2ed04f250d64086ff66cd13e93c8
+  - enabled: 1
+    path: Assets/Assets2/Scenes/LevelsMenu.unity
+    guid: 51c42945fddabae4daf08b8eee17b3a0
+  - enabled: 1
+    path: Assets/Assets2/Scenes/GamePlay.unity
+    guid: d0ead73113c5ab04aa0bcc340fd1a531
+  - enabled: 1
+    path: Assets/Assets2/Scenes/LevelCompleteScreen.unity
+    guid: 582dd1086a426a44c9b5a1234f75e953
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Assets2/Scenes/SampleScene.unity
-    guid: d0ead73113c5ab04aa0bcc340fd1a531
   m_configObjects: {}

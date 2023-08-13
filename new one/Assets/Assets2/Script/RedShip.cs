@@ -9,7 +9,7 @@ public class RedShip: MonoBehaviour
     private Transform planet;
     private Rigidbody rb;
     public float RedMoveSpeed = 5f;
-    private float health = 100;
+    public float health;
     public GameObject gravityBall;
     private EnemyManager enemyManager;
     private bool isStunned;
@@ -19,6 +19,7 @@ public class RedShip: MonoBehaviour
         planet = GameObject.FindGameObjectWithTag("planet").transform;
         rb = gameObject.GetComponent<Rigidbody>();
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
+        health = ConfigurationUtils.RedEnemyHealth;
 
     }
 
