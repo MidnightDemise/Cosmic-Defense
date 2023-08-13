@@ -8,7 +8,7 @@ public class GreenSip : MonoBehaviour
 {
 
     public float greenMoveSpeed = 5f;
-    private float health = 50;
+    public float health;
     private Transform Target;
     private Rigidbody rb;
     public GameObject gravityBall;
@@ -19,6 +19,7 @@ public class GreenSip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = ConfigurationUtils.GreenEnemyHealth;
         rb = gameObject.GetComponent<Rigidbody>();
         Target = GameObject.FindGameObjectWithTag("planet").transform;
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
