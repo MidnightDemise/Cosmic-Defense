@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
+    public static List<GameObject> numberOfTurrets = new List<GameObject>();
     public static BuildManager instance;
     public Transform camera;
     private GameObject turretToBuild;

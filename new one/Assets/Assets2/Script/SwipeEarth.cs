@@ -12,6 +12,7 @@ public class SwipeEarth : MonoBehaviour
     private Vector2 startpos;
     private Quaternion initialRotation;
     private Quaternion targetRotation;
+    private float health = 5000;
 
     private void Start()
     {
@@ -61,5 +62,24 @@ public class SwipeEarth : MonoBehaviour
                 rotating = false;
             }
         }
+
+        Debug.Log(health);
+        if(health < 0 )
+        {
+            Destroy(gameObject);
+        }
+
+
+    }
+
+
+    public void Damage(float damage)
+    {
+        health -= damage;
+    }
+
+    public void setHealth(float value)
+    {
+        health = value;
     }
 }

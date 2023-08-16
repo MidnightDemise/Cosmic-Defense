@@ -14,6 +14,8 @@ public class MissileLookScript : MonoBehaviour
     bool isMissileDestroyed = false;
     private GameObject missile;
     private float timer = 0f;
+    private float currentStunTimer = 0f;
+    private bool stun = false;
 
     void Start()
     {
@@ -22,6 +24,14 @@ public class MissileLookScript : MonoBehaviour
 
     void Update()
     {
+        
+            Debug.Log(currentStunTimer);
+
+            if (isStunned())
+        {
+            return;
+        }
+
         if(timer > 8f)
         {
             missile = Instantiate(Missileprefab, shootPoint.position, Quaternion.identity);
@@ -32,5 +42,32 @@ public class MissileLookScript : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
+    }
+
+
+    public void setStun(bool value)
+    {
+        stun = value;
+    }
+
+    public bool isStunned()
+    {
+        return stun;
+    }
+
+
+    public void UpdateStunTimer(float deltaTime)
+    {
+        currentStunTimer += deltaTime;
+    }
+
+    public float GetStunTimer()
+    {
+        return currentStunTimer;
+    }
+
+    public void ResetStunTimer()
+    {
+        currentStunTimer = 0f;
     }
 }

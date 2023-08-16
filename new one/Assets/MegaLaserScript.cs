@@ -11,6 +11,8 @@ public class MegaLaserScript : MonoBehaviour
     public Transform shootpoint;
     public GameObject plasmaBullet;
     public float timer;
+    public float currentStunTimer = 0f;
+    public bool stun;
     void Start()
     {
 
@@ -21,6 +23,11 @@ public class MegaLaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(currentStunTimer);
+        if(isStunned())
+        {
+            return;
+        }
         if (enemyManager.enemies.Count == 0)
             return;
 
@@ -75,5 +82,31 @@ public class MegaLaserScript : MonoBehaviour
 
 
         
+    }
+
+    public void setStun(bool value)
+    {
+        stun = value;
+    }
+
+    public bool isStunned()
+    {
+        return stun;
+    }
+
+
+    public void UpdateStunTimer(float deltaTime)
+    {
+        currentStunTimer += deltaTime;
+    }
+
+    public float GetStunTimer()
+    {
+        return currentStunTimer;
+    }
+
+    public void ResetStunTimer()
+    {
+        currentStunTimer = 0f;
     }
 }

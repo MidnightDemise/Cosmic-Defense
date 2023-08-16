@@ -31,9 +31,9 @@ public static class ConfigurationUtils
     //for levels parameter
 
 
-    #region Green Enemy
     public static int LevelOneGreenEnemyHealth
     {
+    #region Green Enemy
         get { return configurationData.LevelOneGreenEnemyHealth; }
     }
 

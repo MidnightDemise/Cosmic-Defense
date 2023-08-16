@@ -126,9 +126,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2373547842407611128}
   - component: {fileID: 3939931399452345451}
+  - component: {fileID: 102202545810394159}
   m_Layer: 0
   m_Name: GravityLauncher 1
-  m_TagString: Untagged
+  m_TagString: GravityLauncher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,3 +165,25 @@ MonoBehaviour:
   shootpoint: {fileID: 8613337165367728242}
   gravityBall: {fileID: 5299239017068936263, guid: e4c3b4c3127df8a4ca848e31ac19d528,
     type: 3}
+  currentStunTimer: 0
+--- !u!135 &102202545810394159
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860319034205606761}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.02
+  m_Center: {x: 0, y: 0, z: 0}

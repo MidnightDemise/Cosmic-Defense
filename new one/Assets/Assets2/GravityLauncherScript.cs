@@ -16,6 +16,8 @@ public class GravityLauncherScript : MonoBehaviour
     private EnemyManager enemyManager;
     private GameObject temp;
     Vector3 dir;
+    private bool stun;
+    public float currentStunTimer;
     void Start()
     {
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
@@ -24,6 +26,12 @@ public class GravityLauncherScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(currentStunTimer);
+
+        if (isStunned())
+        {
+            return;
+        }
 
         GameObject closestEnemy = null;
         float closestDistance = Mathf.Infinity;
@@ -73,5 +81,31 @@ public class GravityLauncherScript : MonoBehaviour
     public bool ShouldMove()
     {
         return startMoving ;
+    }
+
+    public void setStun(bool value)
+    {
+        stun = value;
+    }
+
+    public bool isStunned()
+    {
+        return stun;
+    }
+
+
+    public void UpdateStunTimer(float deltaTime)
+    {
+        currentStunTimer += deltaTime;
+    }
+
+    public float GetStunTimer()
+    {
+        return currentStunTimer;
+    }
+
+    public void ResetStunTimer()
+    {
+        currentStunTimer = 0f;
     }
 }

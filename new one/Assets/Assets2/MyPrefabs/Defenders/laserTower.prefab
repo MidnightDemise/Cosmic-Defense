@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 9066600015239312647}
   m_Layer: 0
   m_Name: laserTower
-  m_TagString: Untagged
+  m_TagString: LaserTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,7 +305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8159798910550632044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.97, y: 8.54, z: -14.06}
+  m_LocalPosition: {x: 2.97, y: 8.57, z: -14.06}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 2472302377125388049}
   - component: {fileID: 5906023086321123802}
   - component: {fileID: 1863200027634271364}
+  - component: {fileID: 8615016166163592370}
   m_Layer: 0
   m_Name: Cube.001
   m_TagString: Untagged
@@ -345,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8239507109568734649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 6.225689, z: 0}
+  m_LocalPosition: {x: -0, y: 6.59, z: 0}
   m_LocalScale: {x: 60.630806, y: 60.630806, z: 11.510806}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -525,6 +526,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 254067549002740218, guid: f68bb8aff89cced45b8cf93cf1e46ac8,
     type: 3}
   lineRenderers: []
+  stun: 0
+  currentStunTimer: 0
 --- !u!114 &1863200027634271364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,6 +547,27 @@ MonoBehaviour:
   laserPrefab: {fileID: 2602036292081609765, guid: f68bb8aff89cced45b8cf93cf1e46ac8,
     type: 3}
   firePoint: {fileID: 151277221261128686}
+--- !u!135 &8615016166163592370
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239507109568734649}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.62
+  m_Center: {x: 0, y: -0.06, z: 0.050166965}
 --- !u!1 &8849030118138646447
 GameObject:
   m_ObjectHideFlags: 0

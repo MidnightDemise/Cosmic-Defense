@@ -17,9 +17,12 @@ public class LaserTowerScript : MonoBehaviour
     private int damageMultiplier;
     private List<Collider> colliders = new List<Collider>();
     private Collider[] tempColliders;
-    private List<Vector3> positionsOfContacts = new List<Vector3>();                                   
-
+    private List<Vector3> positionsOfContacts = new List<Vector3>();
+    
     public List<GameObject> lineRenderers = new List<GameObject>(4);
+
+    public bool stun = false;
+    public float currentStunTimer = 0f;
 
 
     void Start()
@@ -42,6 +45,12 @@ public class LaserTowerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(currentStunTimer);
+
+        if (isStunned())
+        {
+            return;
+        }
         positionsOfContacts.Clear();
         laserRanges.Clear(); // Clear the list at the beginning of each frame
 
@@ -161,5 +170,32 @@ public class LaserTowerScript : MonoBehaviour
             EnemyRanges.Add(laserRanges[i]);
         }
     }
-    
+
+
+    public void setStun(bool value)
+    {
+        stun = value;
+    }
+
+    public bool isStunned()
+    {
+        return stun;
+    }
+
+
+    public void UpdateStunTimer(float deltaTime)
+    {
+        currentStunTimer += deltaTime;
+    }
+
+    public float GetStunTimer()
+    {
+        return currentStunTimer;
+    }
+
+    public void ResetStunTimer()
+    {
+        currentStunTimer = 0f;
+    }
+
 }

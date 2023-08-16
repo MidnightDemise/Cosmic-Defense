@@ -17,6 +17,11 @@ TagManager:
   - GreenShip
   - YellowShip
   - RedShip
+  - Turret
+  - MissileLauncher
+  - PlasmaLauncher
+  - LaserTower
+  - boss1Shootpoint
   layers:
   - Default
   - TransparentFX

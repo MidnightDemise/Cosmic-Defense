@@ -95,6 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 925218460664612000}
   - component: {fileID: 6301001031281485067}
+  - component: {fileID: 6837970240018261508}
   m_Layer: 0
   m_Name: PartToRotate
   m_TagString: Untagged
@@ -134,6 +135,30 @@ MonoBehaviour:
   shootpoint: {fileID: 8938229277895832132}
   plasmaBullet: {fileID: 6262364404191939846, guid: 92e97c0b4498be14aa247e6ede62bc68,
     type: 3}
+  timer: 0
+  currentStunTimer: 0
+  stun: 0
+--- !u!135 &6837970240018261508
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111639942825815004}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 16.94
+  m_Center: {x: 0, y: 0, z: 0.83}
 --- !u!1 &2922538458015758967
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +170,7 @@ GameObject:
   - component: {fileID: 1285226444427082008}
   m_Layer: 0
   m_Name: PlasmaLauncher
-  m_TagString: Untagged
+  m_TagString: PlasmaLauncher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
