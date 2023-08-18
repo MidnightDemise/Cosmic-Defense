@@ -73,9 +73,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7303229984443831426}
   - component: {fileID: 2126686894030847242}
+  - component: {fileID: 1217191605430709552}
+  - component: {fileID: 3767568110430156602}
   m_Layer: 0
   m_Name: fishBoss
-  m_TagString: Untagged
+  m_TagString: FishBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +101,7 @@ Transform:
   - {fileID: 1936243020043765613}
   - {fileID: 7308424471607675834}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2126686894030847242
 MonoBehaviour:
@@ -118,6 +120,54 @@ MonoBehaviour:
   electricBall: {fileID: 8990543552989925094, guid: 58642073e186c0648a9d3bffc690baa9,
     type: 3}
   shootpoint: {fileID: 7308424471607675834}
+--- !u!54 &1217191605430709552
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171248012849401571}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3767568110430156602
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171248012849401571}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 4.41, z: 4.6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2445323243971649493
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,6 +44,22 @@ public class ConfigurationData
         get { return values[ConfigurationDataValueName.RedEnemyHealth]; }
     }
 
+    public int CanonDamage
+    {
+        get { return values[ConfigurationDataValueName.CanonLevelOneDamage]; }
+    }
+
+    public int MissileLauncherDamage
+    {
+        get { return values[ConfigurationDataValueName.MissileLauncherLevelOneDamage]; }
+    }
+
+    public int MegaLaserDamage
+    {
+        get { return values[ConfigurationDataValueName.MegaLaserLevelOneDamage]; }
+    }
+
+
     #region Green Enemy Level wise Health
 
     /// <summary>
@@ -140,6 +156,85 @@ public class ConfigurationData
 
     #endregion
 
+    #region Canon Level Wise Damage
+
+    public int CanonLevelOneDamage
+    {
+        get { return values[ConfigurationDataValueName.CanonLevelOneDamage]; }
+    }
+
+    public int CanonLevelTwoDamage
+    {
+        get { return values[ConfigurationDataValueName.CanonLevelTwoDamage]; }
+    }
+
+    public int CanonLevelThreeDamage
+    {
+        get { return values[ConfigurationDataValueName.CanonLevelThreeDamage]; }
+    }
+
+    public int CanonLevelFourDamage
+    {
+        get { return values[ConfigurationDataValueName.CanonLevelFourDamage]; }
+
+    }
+
+    public int CanonLevelFiveDamage
+    {
+        get { return values[ConfigurationDataValueName.CanonLevelFiveDamage]; }
+    }
+
+    #endregion
+
+    #region Missile Launcher Level Wise Damage
+
+    public int MissileLevelOneDamage
+    {
+        get { return values[ConfigurationDataValueName.MissileLauncherLevelOneDamage]; }
+    }
+
+    public int MissileLevelTwoDamage
+    {
+        get { return values[ConfigurationDataValueName.MissileLauncherLevelTwoDamage]; }
+    }
+
+    public int MissileLevelThreeDamage
+    {
+        get { return values[ConfigurationDataValueName.MissileLauncherLevelThreeDamage]; }
+    }
+
+    public int MissileLevelFourDamage
+    {
+        get { return values[ConfigurationDataValueName.MissileLauncherLevelFourDamage]; }
+    }
+
+    public int MissileLevelFiveDamage
+    {
+        get { return values[ConfigurationDataValueName.MissileLauncherLevelFiveDamage]; }
+    }
+
+    #endregion
+
+    #region MegaLaser Level Wise Damage
+
+    public int MegaLaserLevelOneDamage
+    {
+        get { return values[ConfigurationDataValueName.MegaLaserLevelOneDamage]; }
+    }
+
+    public int MegaLaserLevelTwoDamage
+    {
+        get { return values[ConfigurationDataValueName.MegaLaserLevelTwoDamage]; }
+    }
+
+    public int MegaLaserLevelThreeDamage
+    {
+        get { return values[ConfigurationDataValueName.MegaLaserLevelThreeDamage]; }
+    }
+
+
+    #endregion
+
     #endregion
 
     #region Constructor
@@ -199,6 +294,19 @@ public class ConfigurationData
         values.Add(ConfigurationDataValueName.LevelThreeRedEnemyHealth, 210);
         values.Add(ConfigurationDataValueName.LevelFourRedEnemyHealth, 260);
         values.Add(ConfigurationDataValueName.LevelFiveRedEnemyHealth, 310);
+        values.Add(ConfigurationDataValueName.CanonLevelOneDamage, 50);
+        values.Add(ConfigurationDataValueName.CanonLevelTwoDamage, 75);
+        values.Add(ConfigurationDataValueName.CanonLevelThreeDamage, 100);
+        values.Add(ConfigurationDataValueName.CanonLevelFourDamage, 125);
+        values.Add(ConfigurationDataValueName.CanonLevelFiveDamage, 150);
+        values.Add(ConfigurationDataValueName.MissileLauncherLevelOneDamage, 40);
+        values.Add(ConfigurationDataValueName.MissileLauncherLevelTwoDamage, 70);
+        values.Add(ConfigurationDataValueName.MissileLauncherLevelThreeDamage, 90);
+        values.Add(ConfigurationDataValueName.MissileLauncherLevelFourDamage, 100);
+        values.Add(ConfigurationDataValueName.MissileLauncherLevelFiveDamage, 130);
+        values.Add(ConfigurationDataValueName.MegaLaserLevelOneDamage, 120);
+        values.Add(ConfigurationDataValueName.MegaLaserLevelTwoDamage, 220);
+        values.Add(ConfigurationDataValueName.MegaLaserLevelThreeDamage, 320);
 
     }
 

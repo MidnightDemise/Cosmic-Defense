@@ -181,7 +181,6 @@ GameObject:
   - component: {fileID: 1281995977935666223}
   - component: {fileID: 716215446591866595}
   - component: {fileID: 6593213709600629115}
-  - component: {fileID: -8492118167738870898}
   - component: {fileID: -2028929358238465133}
   m_Layer: 0
   m_Name: green ship 1
@@ -249,21 +248,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &-8492118167738870898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087471566655392854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c59eaac7470c0a4dafadae23a3880fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  greenMoveSpeed: 5
-  health: 0
-  gravityBall: {fileID: 0}
 --- !u!65 &-2028929358238465133
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class MissileLookScript : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Play(ClipName.CanonShot);
         Instantiate(Missileprefab, shootPoint.position, Quaternion.identity);
     }
 
@@ -32,8 +33,10 @@ public class MissileLookScript : MonoBehaviour
             return;
         }
 
-        if(timer > 8f)
+        if(timer > 12f)
         {
+            AudioManager.Play(ClipName.CanonShot);
+
             missile = Instantiate(Missileprefab, shootPoint.position, Quaternion.identity);
             missile.GetComponent<HomingScript>().setInitialRotation(shootPoint.rotation);
             timer = 0f;

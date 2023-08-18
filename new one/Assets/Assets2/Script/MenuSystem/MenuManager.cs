@@ -19,6 +19,12 @@ public static class MenuManager
             case MenuName.LevelCompleteScreen:
                 SceneManager.LoadScene("LevelCompleteScreen");
                 break;
+            case MenuName.LevelFailedScreen:
+                SceneManager.LoadScene("LevelFailedScreen");
+                break;
+            case MenuName.Stages:
+                SceneManager.LoadScene("Stages");
+                break;
         }
     }
 }

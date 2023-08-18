@@ -6,5 +6,7 @@ public enum MenuName
 {
     Main,
     Levels,
-    LevelCompleteScreen
+    LevelCompleteScreen,
+    Stages,
+    LevelFailedScreen
 }

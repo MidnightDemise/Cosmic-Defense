@@ -22,4 +22,17 @@ public enum ConfigurationDataValueName
     LevelThreeRedEnemyHealth,
     LevelFourRedEnemyHealth,
     LevelFiveRedEnemyHealth,
+    CanonLevelOneDamage,
+    CanonLevelTwoDamage,
+    CanonLevelThreeDamage,
+    CanonLevelFourDamage,
+    CanonLevelFiveDamage,
+    MissileLauncherLevelOneDamage,
+    MissileLauncherLevelTwoDamage,
+    MissileLauncherLevelThreeDamage,
+    MissileLauncherLevelFourDamage,
+    MissileLauncherLevelFiveDamage,
+    MegaLaserLevelOneDamage,
+    MegaLaserLevelTwoDamage,
+    MegaLaserLevelThreeDamage
 }

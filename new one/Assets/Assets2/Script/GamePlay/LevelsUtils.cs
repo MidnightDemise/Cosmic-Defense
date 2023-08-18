@@ -8,6 +8,9 @@ public static class LevelsUtils
     #region Fields
 
     static Levels levels;
+    static bool levelThree;
+    static bool levelFour;
+    static bool levelFive;
 
     #endregion
 
@@ -79,6 +82,110 @@ public static class LevelsUtils
         }
     }
 
+    public static int CanonDamage
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelOne:
+                    return ConfigurationUtils.CanonLevelOneDamage;
+                case Levels.LevelTwo:
+                    return ConfigurationUtils.CanonLevelTwoDamage;
+                case Levels.LevelThree:
+                    return ConfigurationUtils.CanonLevelThreeDamage;
+                case Levels.LevelFour:
+                    return ConfigurationUtils.CanonLevelFourDamage;
+                case Levels.LevelFive:
+                    return ConfigurationUtils.CanonLevelFiveDamage;
+                default:
+                    return ConfigurationUtils.CanonLevelOneDamage;
+            }
+        }
+    }
+
+    public static int MissileDamage
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelOne:
+                    return ConfigurationUtils.MissileLevelOneDamage;
+                case Levels.LevelTwo:
+                    return ConfigurationUtils.MissileLevelTwoDamage;
+                case Levels.LevelThree:
+                    return ConfigurationUtils.MissileLevelThreeDamage;
+                case Levels.LevelFour:
+                    return ConfigurationUtils.MissileLevelFourDamage;
+                case Levels.LevelFive:
+                    return ConfigurationUtils.MissileLevelFiveDamage;
+                default:
+                    return ConfigurationUtils.MissileLevelOneDamage;
+            }
+        }
+    }
+
+    public static int MegaLaserDamage
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelOne:
+                    return ConfigurationUtils.MegaLaserLevelOneDamage;
+                case Levels.LevelTwo:
+                    return ConfigurationUtils.MegaLaserLevelTwoDamage;
+                case Levels.LevelThree:
+                    return ConfigurationUtils.MegaLaserLevelThreeDamage;
+                default:
+                    return ConfigurationUtils.MegaLaserLevelOneDamage;
+            }
+        }
+    }
+
+    public static bool LevelThree
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelThree:
+                    return levelThree;              
+                default: 
+                    return levelThree;
+            }
+        }
+    }
+
+    public static bool LevelFour
+    {
+        get
+        {
+            switch(levels)
+            {
+                case Levels.LevelFour:
+                    return levelFour;
+                default:
+                    return levelFour;
+            }
+        }
+    }
+
+    public static bool LevelFive
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelFive:
+                    return levelFive;
+                default:
+                    return levelFive;
+            }
+        }
+    }
+
     #endregion
 
     #region Methods
@@ -91,12 +198,31 @@ public static class LevelsUtils
     static void HandleGameStartedEvent(Levels name)
     {
         levels = name;
-        SceneManager.LoadScene("GamePlay");
-    }
+        switch (levels)
+        {
+            case Levels.LevelThree:
+                levelThree = true;
+                levelFour = false;
+                levelFive = false;
+                break;
+            case Levels.LevelFour:
+                levelThree = false;
+                levelFour = true;
+                levelFive = false;
+                break;
+            case Levels.LevelFive:
+                levelThree = false;
+                levelFour = false;
+                levelFive = true;
+                break;
+            default:
+                levelThree = false;
+                levelFour = false;
+                levelFive = false;
+                break;
+        }
 
-    private static int CalculateTotalEnemyHealth(int greenHealth, int yellowHealth, int redHealth)
-    {
-        return greenHealth + yellowHealth + redHealth;
+        SceneManager.LoadScene("GamePlay");
     }
 
     #endregion

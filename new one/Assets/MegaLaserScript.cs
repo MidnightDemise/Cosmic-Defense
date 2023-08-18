@@ -23,7 +23,7 @@ public class MegaLaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentStunTimer);
+        //Debug.Log(currentStunTimer);
         if(isStunned())
         {
             return;
@@ -63,6 +63,7 @@ public class MegaLaserScript : MonoBehaviour
                 Vector3 sideBulletDir2 = Quaternion.AngleAxis(-45, transform.right) * dir;
 
                 // Instantiate and set the initial directions for the three bullets
+                AudioManager.Play(ClipName.MegaLaserShot); 
                 GameObject plasma = Instantiate(plasmaBullet, shootpoint.position, Quaternion.identity);
                 GameObject plasma1 = Instantiate(plasmaBullet, shootpoint.position, Quaternion.identity);
                 GameObject plasma2 = Instantiate(plasmaBullet, shootpoint.position, Quaternion.identity);

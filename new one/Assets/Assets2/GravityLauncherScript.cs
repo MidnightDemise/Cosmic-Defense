@@ -59,6 +59,7 @@ public class GravityLauncherScript : MonoBehaviour
 
                 if (reloadTimer > 2.5f)
                 {
+                    AudioManager.Play(ClipName.GravityLauncherShot);
                     temp = Instantiate(gravityBall, shootpoint.position, Quaternion.identity);
                     temp.GetComponent<GravityBallScript>().setInitialDirection(dir);
                     reloadTimer = 0f;

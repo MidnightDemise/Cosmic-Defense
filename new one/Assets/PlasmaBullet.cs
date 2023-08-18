@@ -8,8 +8,11 @@ public class PlasmaBullet : MonoBehaviour
     public Transform shootpoint;
     Vector3 direction;
     private Rigidbody rb;
+
+    public int megaLaserDamage;
     void Start()
     {
+        megaLaserDamage = ConfigurationUtils.MegaLaserDamage;
     }
 
     public void setInitialDirection(Vector3 dir)
@@ -30,16 +33,16 @@ public class PlasmaBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger working");
+        //Debug.Log("Trigger working");
         if(other.CompareTag("GreenShip"))
         {
-            other.GetComponent<GreenSip>().DamageShip(70);
+            other.GetComponent<GreenSip>().DamageShip(megaLaserDamage);
 
         }
 
         if (other.CompareTag("YellowShip"))
         {
-            other.GetComponent<yelloShip>().DamageShip(70);
+            other.GetComponent<yelloShip>().DamageShip(megaLaserDamage);
 
 
         }
@@ -47,10 +50,23 @@ public class PlasmaBullet : MonoBehaviour
         if (other.CompareTag("RedShip"))
         {
 
-            other.GetComponent<RedShip>().DamageShip(70);
+            other.GetComponent<RedShip>().DamageShip(megaLaserDamage);
 
 
         }
+        if (other.CompareTag("ArmyBoss"))
+        {
+            other.GetComponent<Boss1Script>().TakeDamage(megaLaserDamage);
+        }
+        if (other.CompareTag("LaserBoss"))
+        {
+            other.GetComponent<LaserBossScript>().TakeDamage(megaLaserDamage);
+        }
+        if (other.CompareTag("FishBoss"))
+        {
+            other.GetComponent<ElectricBossScript>().TakeDamage(megaLaserDamage);
+        }
+
     }
 
 

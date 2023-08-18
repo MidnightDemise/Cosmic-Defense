@@ -8,6 +8,14 @@ public class GamePlayManager : MonoBehaviour
     void Start()
     {
         EventManager.AddLevelCompleteEventListener(HandleWaveSurvivedEvent);
+
+        EventManager.AddArmyBossDestroyedEventListener(HandleWaveSurvivedEvent);
+        
+        EventManager.AddLaserBossDestroyedEventListener(HandleWaveSurvivedEvent);
+        
+        EventManager.AddFishBossDestroyedEventListener(HandleWaveSurvivedEvent);
+
+        EventManager.AddLevelFailedEventListener(HandleLevelFailedEvent);
     }
 
     // Update is called once per frame
@@ -19,6 +27,11 @@ public class GamePlayManager : MonoBehaviour
     public void HandleWaveSurvivedEvent()
     {
         EndLevel();
+    }
+
+    public void HandleLevelFailedEvent()
+    {
+        MenuManager.GoToMenu(MenuName.LevelFailedScreen);
     }
 
     public void EndLevel()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 public class ElectricBossScript : MonoBehaviour
 {
@@ -11,8 +12,17 @@ public class ElectricBossScript : MonoBehaviour
     public float timer;
     public GameObject electricBall;
     public Transform shootpoint;
+
+    float health = 35000;
+
+    // Event functionality
+    FishBossDestroyedEvent fishBossDestroyedEvent = new FishBossDestroyedEvent();
+
     void Start()
     {
+        //Declaring Event 
+        EventManager.AddFishBossDestroyedEventInvoker(this);
+        
         planet = GameObject.FindWithTag("planet").transform;
     }
 
@@ -26,6 +36,7 @@ public class ElectricBossScript : MonoBehaviour
             
             if(timer > 1f)
             {
+                AudioManager.Play(ClipName.BossEnemyShot);
                 GameObject a = Instantiate(electricBall, shootpoint.position, Quaternion.identity);
                 a.GetComponent<ElectricBallScript>().setInitialDirection(planet.position - transform.position);
                 timer = 0f;
@@ -45,5 +56,22 @@ public class ElectricBossScript : MonoBehaviour
             transform.Translate(dir * 2f * Time.deltaTime);
         }
 
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log(health);
+        if (health < 0f)
+        {
+            AudioManager.Play(ClipName.EnemyExplode);
+            fishBossDestroyedEvent.Invoke();
+            Destroy(gameObject);
+        }
+    }
+
+    public void AddFishBossDestroyedEventListener(UnityAction listener)
+    {
+        fishBossDestroyedEvent.AddListener(listener);
     }
 }

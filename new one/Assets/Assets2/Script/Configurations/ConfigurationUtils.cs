@@ -27,6 +27,21 @@ public static class ConfigurationUtils
         get { return LevelsUtils.RedEnemyHealth; }
     }
 
+    public static int CanonDamage
+    {
+        get { return LevelsUtils.CanonDamage; }
+    }
+
+    public static int MissileDamage
+    {
+        get { return LevelsUtils.MissileDamage; }
+    }
+
+    public static int MegaLaserDamage
+    {
+        get { return LevelsUtils.MegaLaserDamage; }
+    }
+
 
     //for levels parameter
 
@@ -119,6 +134,84 @@ public static class ConfigurationUtils
     }
 
     #endregion
+
+    #endregion
+
+    #region Canon Level Wise Damage
+
+    public static int CanonLevelOneDamage
+    {
+        get { return configurationData.CanonLevelOneDamage; }
+    }
+
+    public static int CanonLevelTwoDamage
+    {
+        get { return configurationData.CanonLevelTwoDamage; }
+    }
+
+
+    public static int CanonLevelThreeDamage
+    {
+        get { return configurationData.CanonLevelThreeDamage; }
+    }
+
+    public static int CanonLevelFourDamage
+    {
+        get { return configurationData.CanonLevelFourDamage; }
+    }
+
+    public static int CanonLevelFiveDamage
+    {
+        get { return configurationData.CanonLevelFiveDamage; }
+    }
+
+    #endregion
+
+    #region Missile Launcher Level Wise Damage
+
+    public static int MissileLevelOneDamage
+    {
+        get { return configurationData.MissileLevelOneDamage; }
+    }
+
+    public static int MissileLevelTwoDamage
+    {
+        get { return configurationData.MissileLevelTwoDamage; }
+    }
+
+    public static int MissileLevelThreeDamage
+    {
+        get { return configurationData.MissileLevelThreeDamage; }
+    }
+
+    public static int MissileLevelFourDamage
+    {
+        get { return configurationData.MissileLevelFourDamage; }
+    }
+
+    public static int MissileLevelFiveDamage
+    {
+        get { return configurationData.MissileLevelFiveDamage; }
+    }
+
+    #endregion
+
+    #region MegaLaser Level Wise Damage
+
+    public static int MegaLaserLevelOneDamage
+    {
+        get { return configurationData.MegaLaserLevelOneDamage; }
+    }
+
+    public static int MegaLaserLevelTwoDamage
+    {
+        get { return configurationData.MegaLaserLevelTwoDamage; }
+    }
+
+    public static int MegaLaserLevelThreeDamage
+    {
+        get { return configurationData.MegaLaserLevelThreeDamage; }
+    }
 
     #endregion
 

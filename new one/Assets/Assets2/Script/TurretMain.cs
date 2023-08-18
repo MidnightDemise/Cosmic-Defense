@@ -24,37 +24,35 @@ public class TurretMain : MonoBehaviour
         originalRotation = transform.rotation;
     }
     void Update()
-    {        Debug.Log(currentStunTimer);
+    {        //Debug.Log(currentStunTimer);
 
         if (isStunned())
         {
             return;
         }
-       // if (enemyManager.enemies.Count == 0)
-         //   return;
+        if (enemyManager.enemies.Count == 0)
+            return;
 
         GameObject closestEnemy = null;
         float closestDistance = Mathf.Infinity;
 
-        closestEnemy = fishBoss;
 
 
+        foreach (GameObject enemy in enemyManager.enemies)
+        {
+            if (enemy != null)
+            {
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceToEnemy < closestDistance)
+                {
+                    closestDistance = distanceToEnemy;
+                    closestEnemy = enemy;
+                }
+            }
 
-        //   foreach (GameObject enemy in enemyManager.enemies)
-        //   {
-        //   if(enemy != null)
-        //    {
-        //         float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-        //       if (distanceToEnemy < closestDistance)
-        //        {
-        //           closestDistance = distanceToEnemy;
-        //           closestEnemy = enemy;
-        //        }
-        //}
+        }
 
-        //   }
-
-            if (closestEnemy != null && closestDistance > 8f)
+        if (closestEnemy != null && closestDistance < 8f)
             {
                 Vector3 targetDirection = closestEnemy.transform.position - transform.position;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
@@ -62,6 +60,7 @@ public class TurretMain : MonoBehaviour
 
                 if (recoilTimer > 0.5f)
                 {
+                    AudioManager.Play(ClipName.BossEnemyShot);
                     GameObject newBullet = Instantiate(prefabbbb, bulletPoint.position, Quaternion.identity);
                     newBullet.GetComponent<bulletScript>().setInitialDirection(transform.forward);
                     newBullet.GetComponent<bulletScript>().setRotation(transform.rotation);

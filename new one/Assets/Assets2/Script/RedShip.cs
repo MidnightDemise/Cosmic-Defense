@@ -13,21 +13,25 @@ public class RedShip: MonoBehaviour
     public GameObject gravityBall;
     private EnemyManager enemyManager;
     private bool isStunned;
+    private GameObject planetPrefab;
 
     void Start()
     {
         planet = GameObject.FindGameObjectWithTag("planet").transform;
         rb = gameObject.GetComponent<Rigidbody>();
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
+        
+        
         health = ConfigurationUtils.RedEnemyHealth;
 
+        planetPrefab = GameObject.FindWithTag("planet");
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (!GravityBallScript.gameObjects.Contains(gameObject) && !isStunned)
+        if (!GravityBallScript.gameObjects.Contains(gameObject) && !isStunned && planetPrefab != null)
         {
 
             Vector3 dir = planet.position - transform.position;
@@ -40,7 +44,7 @@ public class RedShip: MonoBehaviour
 
         if(health < 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }
@@ -55,23 +59,26 @@ public class RedShip: MonoBehaviour
     public void DamageShip(float damage)
     {
         health -= damage;
+        if(health <= 0)
+        {
+            enemyManager.enemies.Remove(gameObject);
+
+            ReturnToPool();
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Node")
+        if (other.gameObject.tag == "Node")
 
         {
-            Destroy(gameObject,0.1f);
+            planetPrefab.GetComponent<SwipeEarth>().Damage(health);
+            enemyManager.enemies.Remove(gameObject);
+
+            ReturnToPool();
         }
 
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero;
-            rb.AddForce(Vector3.up * 500f, ForceMode.Acceleration);
-            GravityBallScript.gameObjects.Add(collision.gameObject);
-        }
+       
     }
 
     public void setStun(bool value)
@@ -82,6 +89,16 @@ public class RedShip: MonoBehaviour
     public bool getStun()
     {
         return isStunned;
+    }
+
+    public void ReturnToPool()
+    {
+        if (enemyManager != null)
+        {
+            AudioManager.Play(ClipName.EnemyExplode);
+
+            enemyManager.ReturnShipToPool(gameObject);
+        }
     }
 
 }

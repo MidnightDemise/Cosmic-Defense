@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,7 @@ public class LaserTowerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentStunTimer);
+        //Debug.Log(currentStunTimer);
 
         if (isStunned())
         {
@@ -53,8 +54,9 @@ public class LaserTowerScript : MonoBehaviour
         }
         positionsOfContacts.Clear();
         laserRanges.Clear(); // Clear the list at the beginning of each frame
+        colliders.Clear();
 
-        foreach (var enemy in enemyManager.enemies)
+        foreach (GameObject enemy in enemyManager.enemies)
         {
             if (enemy != null)
             {
@@ -82,17 +84,19 @@ public class LaserTowerScript : MonoBehaviour
         {
             LineRenderer line = lineRenderers[i].GetComponent<LineRenderer>();
             line.SetPosition(0, laserPoint.position);
-
             line.SetPosition(1, EnemyRanges[i].transform.position);
+
+            
 
             if(line.GetPosition(1) != null)
             {
+                //line.SetPosition(1, EnemyRanges[i].transform.position);
+                //line.enabled = false;
                 positionsOfContacts.Add(line.GetPosition(1));
-
             }
-
-
             line.enabled = true;
+
+            AudioManager.Play(ClipName.LaserShot);
 
             //  GameObject bulletObj = Instantiate(bulletPrefab, laserPoint.position, Quaternion.identity);
             // LaserBulletScript bulletScript = bulletObj.GetComponent<LaserBulletScript>();
@@ -107,8 +111,17 @@ public class LaserTowerScript : MonoBehaviour
                 tempColliders = Physics.OverlapSphere(pos, 0.1f);
                 colliders.Add(tempColliders[0]);
 
+                //for(int i = 0; i < tempColliders.Length; i++)
+                //{
+                //    if (tempColliders[i] != null)
+                //    {
+                //        colliders.Add(tempColliders[i]);
+                //    }
+                //}
+
             }
         }
+        colliders.Clear();
         
         foreach (Collider collider in colliders)
         {
@@ -135,6 +148,19 @@ public class LaserTowerScript : MonoBehaviour
 
                 }
 
+                if (collider.tag == "ArmyBoss")
+                {
+                    collider.GetComponent<Boss1Script>().TakeDamage(0.3f);
+                }
+                if (collider.tag == "LaserBoss")
+                {
+                    collider.GetComponent<LaserBossScript>().TakeDamage(0.3f);
+                }
+                if (collider.tag == "FishBoss")
+                {
+                    collider.GetComponent<ElectricBossScript>().TakeDamage(0.3f);
+                }
+
                 //}
                 //   else
                 //  {
@@ -151,7 +177,6 @@ public class LaserTowerScript : MonoBehaviour
 
         }
 
-        colliders.Clear();
     }
 
     void Add4Enemies()

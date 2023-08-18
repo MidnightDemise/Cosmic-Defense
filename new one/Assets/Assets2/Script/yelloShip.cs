@@ -10,6 +10,7 @@ public class yelloShip : MonoBehaviour
     public float health;
     public float yellowMoveSpeed = 3f;
     private Transform planet;
+    private GameObject planetPrefab;
     private Rigidbody rb;
     public GameObject gravityBall;
     private EnemyManager enemyManager;
@@ -20,7 +21,10 @@ public class yelloShip : MonoBehaviour
         planet = GameObject.FindWithTag("planet").transform;
         rb = gameObject.GetComponent<Rigidbody>();
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
+        
         health = ConfigurationUtils.YellowEnemyHealth;
+
+        planetPrefab = GameObject.FindWithTag("planet");
 
     }
 
@@ -28,7 +32,7 @@ public class yelloShip : MonoBehaviour
     void Update()
     {
 
-        if (!GravityBallScript.gameObjects.Contains(gameObject))
+        if (!GravityBallScript.gameObjects.Contains(gameObject) && planetPrefab != null)
         {
 
             Vector3 dir = planet.position - transform.position;
@@ -39,7 +43,7 @@ public class yelloShip : MonoBehaviour
 
         if(health <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         
 
@@ -55,14 +59,26 @@ public class yelloShip : MonoBehaviour
     public void DamageShip(float damage)
     {
         health -= damage;
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Node")
+        if(health <= 0)
         {
             enemyManager.enemies.Remove(gameObject);
-            Destroy(gameObject,0.1f);
+
+            ReturnToPool();
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Node")
+
+        {
+            planetPrefab.GetComponent<SwipeEarth>().Damage(health);
+            enemyManager.enemies.Remove(gameObject);
+
+            AudioManager.Play(ClipName.EnemyExplode);
+            ReturnToPool();
+        }
+
+
     }
 
 
@@ -76,6 +92,13 @@ public class yelloShip : MonoBehaviour
         return isStunned;
     }
 
+    public void ReturnToPool()
+    {
+        if (enemyManager != null)
+        {
+            enemyManager.ReturnShipToPool(gameObject);
+        }
+    }
 
 }
 

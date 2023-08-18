@@ -15,6 +15,8 @@ public class GreenSip : MonoBehaviour
     public static Vector3  originalVelocity;
     private bool isStunned;
 
+    private GameObject planetPrefab;
+
     private EnemyManager enemyManager;
     // Start is called before the first frame update
     void Start()
@@ -23,12 +25,14 @@ public class GreenSip : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         Target = GameObject.FindGameObjectWithTag("planet").transform;
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
+
+        planetPrefab = GameObject.FindWithTag("planet");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!GravityBallScript.gameObjects.Contains(gameObject))
+        if(!GravityBallScript.gameObjects.Contains(gameObject) && planetPrefab != null)
         {
 
             Vector3 dir = Target.position - transform.position;
@@ -41,7 +45,7 @@ public class GreenSip : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }
@@ -55,14 +59,33 @@ public class GreenSip : MonoBehaviour
     public void DamageShip(float damage)
     {
         health -= damage;
+        if (health <= 0)
+        {
+            AudioManager.Play(ClipName.EnemyExplode);
+            enemyManager.enemies.Remove(gameObject);
+            ReturnToPool();
+        }
     }
 
+    public void DamageShip(float damage,List<Vector3> pos)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            AudioManager.Play(ClipName.EnemyExplode);
+            pos.Remove(gameObject.transform.position);
+            enemyManager.enemies.Remove(gameObject);
+            ReturnToPool();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Node"))
         {
-            Destroy(gameObject);
+            planetPrefab.GetComponent<SwipeEarth>().Damage(health);
+            enemyManager.enemies.Remove(gameObject);
+            ReturnToPool();
         }
     }
    // private void OnCollisionEnter(Collision collision)
@@ -87,5 +110,11 @@ public class GreenSip : MonoBehaviour
         return isStunned;
     }
 
-
+    public void ReturnToPool()
+    {
+        if (enemyManager != null)
+        {
+            enemyManager.ReturnShipToPool(gameObject);
+        }
+    }
 }

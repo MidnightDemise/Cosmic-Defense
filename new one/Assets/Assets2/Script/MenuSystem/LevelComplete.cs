@@ -12,6 +12,7 @@ public class LevelComplete : MonoBehaviour
 
     public void HandleHomeButtonClicked()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         Time.timeScale = 1;
         Destroy(gameObject);
         MenuManager.GoToMenu(MenuName.Main);
@@ -19,6 +20,7 @@ public class LevelComplete : MonoBehaviour
 
     public void HandleNextButtonClicked()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         Time .timeScale = 1;
         Destroy(gameObject);
         MenuManager.GoToMenu(MenuName.Levels);

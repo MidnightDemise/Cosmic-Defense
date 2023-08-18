@@ -21,8 +21,11 @@ public class HomingScript : MonoBehaviour
     
     bool setTarget = false;
 
+    public int missileDamage;
+
     void Start()
     {
+        missileDamage = ConfigurationUtils.MissileDamage;
         
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
         rb = gameObject.GetComponentInChildren<Rigidbody>();
@@ -79,7 +82,8 @@ public class HomingScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag =="GreenShip" || other.gameObject.tag == "YellowShip" || other.gameObject.tag =="RedShip")
+        if(other.gameObject.tag =="GreenShip" || other.gameObject.tag == "YellowShip" || other.gameObject.tag =="RedShip" ||
+           other.gameObject.tag == "ArmyBoss" || other.gameObject.tag == "LaserBoss" || other.gameObject.tag == "FishBoss")
         {
             explosionGameObject.transform.position = other.gameObject.transform.position;
             isMissileDestroyed = true;
@@ -91,7 +95,7 @@ public class HomingScript : MonoBehaviour
             {
                 if (collider.tag == "GreenShip")
                 {
-                    collider.GetComponent<GreenSip>().DamageShip(40);
+                    collider.GetComponent<GreenSip>().DamageShip(missileDamage);
                  //   enemyManager.enemies.Remove(collider.gameObject);
                    // Destroy(collider.gameObject);
 
@@ -101,14 +105,26 @@ public class HomingScript : MonoBehaviour
                 
                 if(collider.tag == "YellowShip")
                 {
-                    collider.GetComponent<yelloShip>().DamageShip(40);
+                    collider.GetComponent<yelloShip>().DamageShip(missileDamage);
 
                 }
 
                 if (collider.tag == "RedShip")
                 {
-                    collider.GetComponent<RedShip>().DamageShip(40);
+                    collider.GetComponent<RedShip>().DamageShip(missileDamage);
 
+                }
+                if(collider.tag == "ArmyBoss")
+                {
+                    collider.GetComponent<Boss1Script>().TakeDamage(missileDamage);
+                }
+                if(collider.tag == "LaserBoss")
+                {
+                    collider.GetComponent<LaserBossScript>().TakeDamage(missileDamage);
+                }
+                if(collider.tag == "FishBoss")
+                {
+                    collider.GetComponent<ElectricBossScript>().TakeDamage(missileDamage);
                 }
 
                 if (collider.tag == "Missile")

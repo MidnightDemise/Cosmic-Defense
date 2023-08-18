@@ -16,3 +16,16 @@ LevelTwoRedEnemyHealth,160
 LevelThreeRedEnemyHealth,210
 LevelFourRedEnemyHealth,260
 LevelFiveRedEnemyHealth,310
+CanonLevelOneDamage,50
+CanonLevelTwoDamage,75
+CanonLevelThreeDamage,100
+CanonLevelFourDamage,125
+CanonLevelFiveDamage,150
+MissileLauncherLevelOneDamage,40
+MissileLauncherLevelTwoDamage,70
+MissileLauncherLevelThreeDamage,90
+MissileLauncherLevelFourDamage,100
+MissileLauncherLevelFiveDamage,130
+MegaLaserLevelOneDamage,120
+MegaLaserLevelTwoDamage,220
+MegaLaserLevelThreeDamage,320

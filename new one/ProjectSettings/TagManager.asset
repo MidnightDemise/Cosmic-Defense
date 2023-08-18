@@ -22,6 +22,9 @@ TagManager:
   - PlasmaLauncher
   - LaserTower
   - boss1Shootpoint
+  - ArmyBoss
+  - LaserBoss
+  - FishBoss
   layers:
   - Default
   - TransparentFX

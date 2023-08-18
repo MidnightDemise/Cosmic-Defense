@@ -13,8 +13,12 @@ public class bulletScript : MonoBehaviour
 
     public float bulletSpeed = 10f;
 
+    public int canonDamage;
+
     void Start()
     {
+        canonDamage = ConfigurationUtils.CanonDamage;
+        
         bulletPoint = GameObject.FindGameObjectWithTag("shootpoint").transform;
         rb = gameObject.GetComponent<Rigidbody>();
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
@@ -45,17 +49,32 @@ public class bulletScript : MonoBehaviour
         if(other.CompareTag("GreenShip"))
         {
             Destroy(gameObject);
-            other.GetComponent<GreenSip>().DamageShip(50);
+            other.GetComponent<GreenSip>().DamageShip(canonDamage);
         }
         else if(other.CompareTag("YellowShip"))
         {
             Destroy(gameObject);
-            other.GetComponent<yelloShip>().DamageShip(50);
+            other.GetComponent<yelloShip>().DamageShip(canonDamage);
         }
         else if(other.CompareTag("RedShip"))
         {
             Destroy(gameObject);
-            other.GetComponent<RedShip>().DamageShip(50);
+            other.GetComponent<RedShip>().DamageShip(canonDamage);
+        }
+        else if (other.CompareTag("ArmyBoss"))
+        {
+            Destroy(gameObject);
+            other.GetComponent<Boss1Script>().TakeDamage(canonDamage);
+        }
+        else if (other.CompareTag("FishBoss"))
+        {
+            Destroy(gameObject);
+            other.GetComponent<ElectricBossScript>().TakeDamage(canonDamage);
+        }
+        else if (other.CompareTag("LaserBoss"))
+        {
+            Destroy(gameObject);
+            other.GetComponent<LaserBossScript>().TakeDamage(canonDamage);
         }
     }
 

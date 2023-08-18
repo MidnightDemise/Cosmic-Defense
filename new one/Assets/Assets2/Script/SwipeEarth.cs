@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SwipeEarth : MonoBehaviour
 {
@@ -14,8 +15,14 @@ public class SwipeEarth : MonoBehaviour
     private Quaternion targetRotation;
     private float health = 5000;
 
+    //for event handling 
+    LevelFailedEvent levelFailedEvent = new LevelFailedEvent();
+
     private void Start()
     {
+        // declaring invoker
+        EventManager.AddLevelFailedEventInvoker(this);
+        
         initialRotation = transform.rotation;
     }
 
@@ -63,10 +70,10 @@ public class SwipeEarth : MonoBehaviour
             }
         }
 
-        Debug.Log(health);
+        //Debug.Log(health);
         if(health < 0 )
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
 
@@ -76,10 +83,22 @@ public class SwipeEarth : MonoBehaviour
     public void Damage(float damage)
     {
         health -= damage;
+        Debug.Log(health);
+        if (health < 0)
+        {
+            levelFailedEvent.Invoke();
+            Destroy(gameObject);
+        }
     }
 
     public void setHealth(float value)
     {
         health = value;
     }
+
+    public void AddLevelFailedEventListener(UnityAction listener)
+    {
+        levelFailedEvent.AddListener(listener);
+    }
+
 }

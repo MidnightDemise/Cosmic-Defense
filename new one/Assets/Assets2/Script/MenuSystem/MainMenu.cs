@@ -6,11 +6,19 @@ public class MainMenu : MonoBehaviour
 {
     public void ExitGame()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         Application.Quit();
     }
 
     public void HandlePlayButtonOnClickEvent()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         MenuManager.GoToMenu(MenuName.Levels);
+    }
+
+    public void HandleStagesButtonClicked()
+    {
+        AudioManager.Play(ClipName.MenuButtonClick);
+        MenuManager.GoToMenu(MenuName.Stages);
     }
 }
