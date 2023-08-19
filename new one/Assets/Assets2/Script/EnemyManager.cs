@@ -78,9 +78,9 @@ public class EnemyManager : MonoBehaviour
         }
         else if(timer >= 60f && timer <= 90f)
         {
-            DropRateOfGreen = 40000;
-            DropRateOfYellow =20200;
-            DropRateOfRed = 10500;
+            DropRateOfGreen = 4000;
+            DropRateOfYellow =2000;
+            DropRateOfRed = 1000;
            spawnWave2();
             timer += Time.deltaTime;
         }

@@ -33,6 +33,7 @@ public class PlasmaBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Destroy(gameObject);
         //Debug.Log("Trigger working");
         if(other.CompareTag("GreenShip"))
         {

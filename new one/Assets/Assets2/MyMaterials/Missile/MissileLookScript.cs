@@ -13,29 +13,34 @@ public class MissileLookScript : MonoBehaviour
     public float reload;
     bool isMissileDestroyed = false;
     private GameObject missile;
-    private float timer = 0f;
+    private float timer = 10f;
     private float currentStunTimer = 0f;
     private bool stun = false;
+    public GameObject enemyManager;
 
     void Start()
     {
-        AudioManager.Play(ClipName.CanonShot);
-        Instantiate(Missileprefab, shootPoint.position, Quaternion.identity);
+       // AudioManager.Play(ClipName.CanonShot);
+       
+        enemyManager = GameObject.FindWithTag("EnemyManager");
     }
 
     void Update()
     {
+        if(enemyManager.GetComponent<EnemyManager>().enemies.Count == 0)
+        {
+            return;
+        }
         
-            Debug.Log(currentStunTimer);
 
             if (isStunned())
         {
             return;
         }
 
-        if(timer > 12f)
+        if(timer > 10f)
         {
-            AudioManager.Play(ClipName.CanonShot);
+            //AudioManager.Play(ClipName.CanonShot);
 
             missile = Instantiate(Missileprefab, shootPoint.position, Quaternion.identity);
             missile.GetComponent<HomingScript>().setInitialRotation(shootPoint.rotation);

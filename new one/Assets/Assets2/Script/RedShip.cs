@@ -69,7 +69,7 @@ public class RedShip: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Node")
+        if (other.gameObject.tag == "Node" || other.CompareTag("planet"))
 
         {
             planetPrefab.GetComponent<SwipeEarth>().Damage(health);

@@ -68,10 +68,11 @@ public class yelloShip : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Node")
+        if (other.gameObject.tag == "Node" || other.CompareTag("planet"))
 
-        {
-            planetPrefab.GetComponent<SwipeEarth>().Damage(health);
+
+            {
+                planetPrefab.GetComponent<SwipeEarth>().Damage(health);
             enemyManager.enemies.Remove(gameObject);
 
             AudioManager.Play(ClipName.EnemyExplode);

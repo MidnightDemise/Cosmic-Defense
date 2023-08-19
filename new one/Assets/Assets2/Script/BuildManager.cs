@@ -16,6 +16,8 @@ public class BuildManager : MonoBehaviour
     public GameObject gravityBall;
     public GameObject MegaLaserLauncher;
     public float numberOfPlates = 20;
+    private List<GameObject> Nodes = new List<GameObject>();
+    public GameObject BuildButton;
     private float angle;
     public Transform planetPos;
     public static Vector3 originalPosCamera;
@@ -37,9 +39,27 @@ public class BuildManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(BuildButton.activeSelf)
+        {
+             foreach(GameObject Node in Nodes)
+            {
+                Node.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach(GameObject Node in Nodes)
+            {
+                Node.SetActive(true);
+            }
+        }
+
+    }
 
     // Update is called once per frame
-    
+
     public void setTurret()
     {
         turretToBuild = turret;
@@ -76,12 +96,13 @@ public class BuildManager : MonoBehaviour
         for(int i = 0; i < numberOfPlates; i++)
         {
             angle = i * angleStep;
-            float y = Mathf.Sin(Mathf.Deg2Rad * angle) * 5f;
-            float x = Mathf.Cos(Mathf.Deg2Rad * angle) * 5f;
+            float y = Mathf.Sin(Mathf.Deg2Rad * angle) * 4.308425f; //y = r * sin theta
+            float x = Mathf.Cos(Mathf.Deg2Rad * angle) * 4.308425f;
             Vector3 platePosition = planetPos.position + new Vector3(x, y, 0);
             Quaternion rotation = Quaternion.Euler(0, 0, -( 270 - angle));
             GameObject plate = Instantiate(platePrefab, platePosition, rotation);
             plate.transform.SetParent(planetPos);
+            Nodes.Add(plate);
 
         }
     }

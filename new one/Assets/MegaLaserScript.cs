@@ -10,7 +10,7 @@ public class MegaLaserScript : MonoBehaviour
     private EnemyManager enemyManager;
     public Transform shootpoint;
     public GameObject plasmaBullet;
-    public float timer;
+    public float timer = 2f;
     public float currentStunTimer = 0f;
     public bool stun;
     void Start()
@@ -50,7 +50,7 @@ public class MegaLaserScript : MonoBehaviour
 
 
 
-        if (closestEnemy != null && closestDistance < 5f)
+        if (closestEnemy != null && closestDistance < 10f)
         {
            
             Vector3 dir = closestEnemy.transform.position - shootpoint.position;
@@ -59,8 +59,8 @@ public class MegaLaserScript : MonoBehaviour
             if (timer > 2f)
             {
                 float halfAngleRad = Mathf.Deg2Rad * 30 * 0.5f;
-                Vector3 sideBulletDir1 = Quaternion.AngleAxis(45, transform.right) * dir;
-                Vector3 sideBulletDir2 = Quaternion.AngleAxis(-45, transform.right) * dir;
+                Vector3 sideBulletDir1 = Quaternion.AngleAxis(30, transform.right) * dir;
+                Vector3 sideBulletDir2 = Quaternion.AngleAxis(-30, transform.right) * dir;
 
                 // Instantiate and set the initial directions for the three bullets
                 AudioManager.Play(ClipName.MegaLaserShot); 

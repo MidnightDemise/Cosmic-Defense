@@ -56,6 +56,27 @@ public class GreenSip : MonoBehaviour
         health = newHealth;
     }
 
+    public void DamageShip(float damage,List<GameObject> linerenderers)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            AudioManager.Play(ClipName.EnemyExplode);
+
+            foreach (GameObject line in linerenderers)
+            {
+                if (line.GetComponent<LineRenderer>().enabled)
+                {
+                    line.GetComponent<LineRenderer>().enabled = false;
+                }
+            }
+            enemyManager.enemies.Remove(gameObject);
+
+
+            ReturnToPool();
+        }
+    }
+
     public void DamageShip(float damage)
     {
         health -= damage;
@@ -67,21 +88,11 @@ public class GreenSip : MonoBehaviour
         }
     }
 
-    public void DamageShip(float damage,List<Vector3> pos)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            AudioManager.Play(ClipName.EnemyExplode);
-            pos.Remove(gameObject.transform.position);
-            enemyManager.enemies.Remove(gameObject);
-            ReturnToPool();
-        }
-    }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Node"))
+        if(other.CompareTag("Node") || other.CompareTag("planet"))
         {
             planetPrefab.GetComponent<SwipeEarth>().Damage(health);
             enemyManager.enemies.Remove(gameObject);
@@ -117,4 +128,5 @@ public class GreenSip : MonoBehaviour
             enemyManager.ReturnShipToPool(gameObject);
         }
     }
+
 }
