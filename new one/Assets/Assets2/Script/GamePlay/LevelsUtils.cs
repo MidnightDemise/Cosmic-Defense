@@ -138,6 +138,10 @@ public static class LevelsUtils
                     return ConfigurationUtils.MegaLaserLevelTwoDamage;
                 case Levels.LevelThree:
                     return ConfigurationUtils.MegaLaserLevelThreeDamage;
+                case Levels.LevelFour:
+                    return ConfigurationUtils.MegaLaserLevelFourDamage;
+                case Levels.LevelFive:
+                    return ConfigurationUtils.MegaLaserLevelFiveDamage;
                 default:
                     return ConfigurationUtils.MegaLaserLevelOneDamage;
             }
@@ -182,6 +186,94 @@ public static class LevelsUtils
                     return levelFive;
                 default:
                     return levelFive;
+            }
+        }
+    }
+
+    public static int GreenShipPoints
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelOne:
+                    return ConfigurationUtils.LevelOneGreenShipPoints;
+                case Levels.LevelTwo:
+                    return ConfigurationUtils.LevelTwoGreenShipPoints;
+                case Levels.LevelThree:
+                    return ConfigurationUtils.LevelThreeGreenShipPoints;
+                case Levels.LevelFour:
+                    return ConfigurationUtils.LevelFourGreenShipPoints;
+                case Levels.LevelFive:
+                    return ConfigurationUtils.LevelFiveGreenShipPoints;
+                default:
+                    return ConfigurationUtils.LevelOneGreenShipPoints;
+            }
+        }
+    }
+
+    public static int YellowShipPoints
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelOne:
+                    return ConfigurationUtils.LevelOneYellowShipPoints;
+                case Levels.LevelTwo:
+                    return ConfigurationUtils.LevelTwoYellowShipPoints;
+                case Levels.LevelThree:
+                    return ConfigurationUtils.LevelThreeYellowShipPoints;
+                case Levels.LevelFour:
+                    return ConfigurationUtils.LevelFourYellowShipPoints;
+                case Levels.LevelFive:
+                    return ConfigurationUtils.LevelFiveYellowShipPoints;
+                default:
+                    return ConfigurationUtils.LevelOneYellowShipPoints;
+            }
+        }
+    }
+
+    public static int RedShipPoints
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelOne:
+                    return ConfigurationUtils.LevelOneRedShipPoints;
+                case Levels.LevelTwo:
+                    return ConfigurationUtils.LevelTwoRedShipPoints;
+                case Levels.LevelThree:
+                    return ConfigurationUtils.LevelThreeRedShipPoints;
+                case Levels.LevelFour:
+                    return ConfigurationUtils.LevelFourRedShipPoints;
+                case Levels.LevelFive:
+                    return ConfigurationUtils.LevelFiveRedShipPoints;
+                    default:
+                    return ConfigurationUtils.LevelOneRedShipPoints;
+            }
+        }
+    }
+
+    public static int LevelStartingScore
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelOne:
+                    return ConfigurationUtils.LevelOneStartingScore;
+                case Levels.LevelTwo:
+                    return ConfigurationUtils.LevelTwoStartingScore;
+                case Levels.LevelThree:
+                    return ConfigurationUtils.LevelThreeStartingScore;
+                case Levels.LevelFour:
+                    return ConfigurationUtils.LevelFourStartingScore;
+                case Levels.LevelFive:
+                    return ConfigurationUtils.LevelFiveStartingScore;
+                default:
+                    return ConfigurationUtils.LevelOneStartingScore;
             }
         }
     }

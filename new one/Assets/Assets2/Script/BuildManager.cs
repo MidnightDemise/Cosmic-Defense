@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class BuildManager : MonoBehaviour
 {
@@ -22,6 +24,29 @@ public class BuildManager : MonoBehaviour
     public Transform planetPos;
     public static Vector3 originalPosCamera;
     public static Quaternion originalRotCamera;
+
+
+    // for event handling
+    CostDeductedEvent costDeductedEvent = new CostDeductedEvent();
+
+    //for costing 
+    int canonCost;
+    int gravityLauncherCost;
+    int laserTowerCost;
+    int missileLauncherCost;
+    int plasmaLauncherCost;
+
+    // for fixing turret placements
+
+    private GameObject selectedWeaponType;
+    
+    bool canonButtonClicked = false;
+    bool gravityLauncherButtonClicked = false;
+    bool laserButtonClicked = false;
+    bool missileLauncherButtonClicked = false;
+    bool plasmaLauncherButtonClicked = false;
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,9 +64,26 @@ public class BuildManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        
+        
+        
+        EventManager.AddCostDeductedEventInvoker(this);
+        
+        canonCost = ConfigurationUtils.CanonPrice;
+        gravityLauncherCost = ConfigurationUtils.GravityLauncherPrice;
+        laserTowerCost = ConfigurationUtils.LaserTowerPrice;
+        missileLauncherCost = ConfigurationUtils.MissileLauncherPrice;
+        plasmaLauncherCost = ConfigurationUtils.PlasmaLauncherPrice;
+
+
+    }
+
     private void Update()
     {
-        if(BuildButton.activeSelf)
+        
+        if (BuildButton.activeSelf)
         {
              foreach(GameObject Node in Nodes)
             {
@@ -62,31 +104,79 @@ public class BuildManager : MonoBehaviour
 
     public void setTurret()
     {
-        turretToBuild = turret;
+        if(!canonButtonClicked)
+        {
+            selectedWeaponType = turret;
+            costDeductedEvent.Invoke(canonCost);
+            canonButtonClicked = true; 
+        }
+        else
+        {
+            selectedWeaponType = null;
+        }
+        
     }
 
     public void SetMissile()
     {
-        turretToBuild = missileLauncher;
+        if(!missileLauncherButtonClicked)
+        {
+            selectedWeaponType = missileLauncher;
+            costDeductedEvent.Invoke(missileLauncherCost);
+            missileLauncherButtonClicked = true;
+        }
+        else
+        {
+            selectedWeaponType = null;
+        }
     }
 
     public void SetLaser()
     {
-        turretToBuild = laserLauncher;
+        if(!laserButtonClicked)
+        {
+            selectedWeaponType = laserLauncher;
+            costDeductedEvent.Invoke(laserTowerCost);
+            laserButtonClicked = true;
+        }
+        else
+        {
+            selectedWeaponType=null;
+        }
+        
     }
     
     public void setGravityBall()
     {
-        turretToBuild = gravityBall;
+        if(!gravityLauncherButtonClicked)
+        {
+            selectedWeaponType = gravityBall;
+            costDeductedEvent.Invoke(gravityLauncherCost);
+            gravityLauncherButtonClicked = true;
+        }
+        else
+        {
+            selectedWeaponType = null;
+        }
+        
     }
 
     public void setMegaLaser()
     {
-        turretToBuild = MegaLaserLauncher;
+        if(!plasmaLauncherButtonClicked)
+        {
+            selectedWeaponType = MegaLaserLauncher;
+            costDeductedEvent.Invoke(plasmaLauncherCost);
+            plasmaLauncherButtonClicked = true;
+        }
+        else
+        {
+            selectedWeaponType = null;
+        }
     }
     public GameObject GetGameTurret()
     {
-        return turretToBuild;
+            return selectedWeaponType;        
     }
 
 
@@ -106,6 +196,17 @@ public class BuildManager : MonoBehaviour
 
         }
     }
+
+  
+
+   
+
+    public void AddCostDeductedEventListener(UnityAction<int> listener)
+    {
+        costDeductedEvent.AddListener(listener);
+    }
+
+  
 
     
 }

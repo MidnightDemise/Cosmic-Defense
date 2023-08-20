@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 
 public static class EventManager
@@ -30,6 +29,25 @@ public static class EventManager
     //list for level failed event
     static List<SwipeEarth> levelFailedEventInvoker = new List<SwipeEarth>();
     static List<UnityAction> levelFailedEventListener = new List<UnityAction>();
+
+    //list for points added event 
+    
+    // green ship 
+    static List<GreenSip> greenShipPointsAddedEventInvoker = new List<GreenSip>();
+    static List<UnityAction<int>> greenShipPointsAddedEventListener = new List<UnityAction<int>>();
+
+    // yellow ship
+    static List<yelloShip> yellowShipPointsAddedEventInvoker = new List<yelloShip>();
+    static List<UnityAction<int>> yellowShipPointsAddedEventListener = new List<UnityAction<int>>();
+
+    // red ship 
+    static List<RedShip> redShipPointsAddedEventInvoker = new List<RedShip>();
+    static List<UnityAction<int>> redShipPointsAddedEventListener = new List<UnityAction<int>>();
+
+    // cost handling
+    static List<BuildManager> costDeductedEventInvoker = new List<BuildManager>();
+    static List<UnityAction<int>> costDeductedEventListener = new List<UnityAction<int>>();
+
 
     #endregion
 
@@ -172,6 +190,110 @@ public static class EventManager
         foreach(SwipeEarth invoker in levelFailedEventInvoker)
         {
             invoker.AddLevelFailedEventListener(listener);
+        }
+    }
+
+    #endregion
+
+    #region Green Ship Points Added Event 
+
+    public static void AddGreenShipPointsAddedEventInvoker(GreenSip invoker)
+    {
+        greenShipPointsAddedEventInvoker.Add(invoker);
+        foreach(UnityAction<int> listener in greenShipPointsAddedEventListener)
+        {
+            invoker.AddGreenShipPointsAddedEventListener(listener);
+        }
+    }
+
+    public static void AddGreenShipPointsAddedEventListener(UnityAction<int> listener)
+    {
+        greenShipPointsAddedEventListener.Add(listener);
+        foreach(GreenSip invoker in greenShipPointsAddedEventInvoker)
+        {
+            invoker.AddGreenShipPointsAddedEventListener(listener);
+        }
+    }
+
+    public static void RemoveGreenShipPointsAddedEventInvoker(GreenSip invoker)
+    {
+        greenShipPointsAddedEventInvoker.Remove(invoker);
+    }
+
+    #endregion
+
+    #region Yellow Ship Points Added Event 
+
+
+    public static void AddYellowShipPointsAddedEventInvoker(yelloShip invoker)
+    {
+        yellowShipPointsAddedEventInvoker.Add(invoker);
+        foreach(UnityAction<int> listener in yellowShipPointsAddedEventListener)
+        {
+            invoker.AddYellowShipPointsAddedEventListener(listener);
+        }
+    }
+
+    public static void AddYellowShipPointsAddedEventListener(UnityAction<int> listener)
+    {
+        yellowShipPointsAddedEventListener.Add(listener);
+        foreach(yelloShip invoker in yellowShipPointsAddedEventInvoker)
+        {
+            invoker.AddYellowShipPointsAddedEventListener(listener);
+        }
+    }
+
+    public static void RemoveYellowShipPointsAddedEventInvoker(yelloShip invoker)
+    {
+        yellowShipPointsAddedEventInvoker.Remove(invoker);
+    }
+
+    #endregion
+
+    #region Red Ship Points Added Event
+
+    public static void AddRedShipPointsAddedEventInvoker(RedShip invoker)
+    {
+        redShipPointsAddedEventInvoker.Add(invoker);
+        foreach(UnityAction<int> listener in redShipPointsAddedEventListener)
+        {
+            invoker.AddRedShipPointsAddedEventListener (listener);
+        }
+    }
+
+    public static void AddRedShipPointsAddedEventListener(UnityAction<int> listener)
+    {
+        redShipPointsAddedEventListener.Add(listener);
+        foreach(RedShip invoker in redShipPointsAddedEventInvoker)
+        {
+            invoker.AddRedShipPointsAddedEventListener(listener);
+        }
+    }
+
+    public static void RemoveRedShipPointsAddedEventInvoker(RedShip invoker)
+    {
+        redShipPointsAddedEventInvoker.Remove(invoker);
+    }
+
+    #endregion
+
+    #region Cost Deducted Event
+
+    public static void AddCostDeductedEventInvoker(BuildManager invoker)
+    {
+        costDeductedEventInvoker.Add(invoker);
+        foreach(UnityAction<int> listener in costDeductedEventListener)
+        {
+            invoker.AddCostDeductedEventListener(listener);
+        }
+    }
+
+    public static void AddCostDeductedEventListener(UnityAction<int> listener)
+    {
+        costDeductedEventListener.Add(listener);
+        foreach(BuildManager invoker in costDeductedEventInvoker)
+        {
+            invoker.AddCostDeductedEventListener (listener);
         }
     }
 

@@ -25,6 +25,7 @@ TagManager:
   - ArmyBoss
   - LaserBoss
   - FishBoss
+  - Score
   layers:
   - Default
   - TransparentFX

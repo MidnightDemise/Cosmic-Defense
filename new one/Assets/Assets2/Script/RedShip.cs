@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Events;
 
 public class RedShip: MonoBehaviour
 {
@@ -15,8 +16,18 @@ public class RedShip: MonoBehaviour
     private bool isStunned;
     private GameObject planetPrefab;
 
+    int points;
+
+
+    //for events
+    RedShipPointsAddedEvent redShipPointsAddedEvent = new RedShipPointsAddedEvent();
+
     void Start()
     {
+
+        points = ConfigurationUtils.RedShipPoints;
+
+
         planet = GameObject.FindGameObjectWithTag("planet").transform;
         rb = gameObject.GetComponent<Rigidbody>();
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
@@ -25,6 +36,8 @@ public class RedShip: MonoBehaviour
         health = ConfigurationUtils.RedEnemyHealth;
 
         planetPrefab = GameObject.FindWithTag("planet");
+
+        EventManager.AddRedShipPointsAddedEventInvoker(this);
     }
 
     // Update is called once per frame
@@ -61,8 +74,9 @@ public class RedShip: MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            redShipPointsAddedEvent.Invoke(points);
+            EventManager.RemoveRedShipPointsAddedEventInvoker(this);
             enemyManager.enemies.Remove(gameObject);
-
             ReturnToPool();
         }
     }
@@ -99,6 +113,11 @@ public class RedShip: MonoBehaviour
 
             enemyManager.ReturnShipToPool(gameObject);
         }
+    }
+
+    public void AddRedShipPointsAddedEventListener(UnityAction<int> listener)
+    {
+        redShipPointsAddedEvent.AddListener(listener);
     }
 
 }

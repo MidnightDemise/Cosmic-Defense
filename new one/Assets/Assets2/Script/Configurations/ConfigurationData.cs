@@ -235,6 +235,151 @@ public class ConfigurationData
 
     #endregion
 
+    #region Green Ship Level Wise Points
+
+    public int LevelOneGreenShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelOneGreenShipPoints]; }
+    }
+
+    public int LevelTwoGreenShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelTwoGreenShipPoints]; }
+    }
+
+    public int LevelThreeGreenShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelThreeGreenShipPoints]; }
+    }
+
+    public int LevelFourGreenShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelFourGreenShipPoints]; }
+    }
+
+    public int LevelFiveGreenShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelFiveGreenShipPoints]; }
+    }
+
+    #endregion
+
+    #region Yellow Ship Level Wise Points
+
+    public int LevelOneYellowShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelOneYellowShipPoints]; }
+    }
+
+    public int LevelTwoYellowShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelTwoYellowShipPoints]; }
+    }
+
+    public int LevelThreeYellowShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelThreeYellowShipPoints]; }
+    }
+
+    public int LevelFourYellowShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelFourYellowShipPoints]; }
+    }
+
+    public int LevelFiveYellowShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelFiveYellowShipPoints]; }
+    }
+
+    #endregion
+
+    #region Red Ship Level Wise Points
+
+    public int LevelOneRedShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelOneRedShipPoints]; }
+    }
+
+    public int LevelTwoRedShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelTwoRedShipPoints]; }
+    }
+
+    public int LevelThreeRedShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelThreeRedShipPoints]; }
+    }
+
+    public int LevelFourRedShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelFourRedShipPoints]; }
+    }
+
+    public int LevelFiveRedShipPoints
+    {
+        get { return values[ConfigurationDataValueName.LevelFiveRedShipPoints]; }
+    }
+
+    #endregion
+
+    #region Level Wise Starting Scores
+
+    public int LevelOneStartingScore
+    {
+        get { return values[ConfigurationDataValueName.LevelOneStartingScore]; }
+    }
+
+    public int LevelTwoStartingScore
+    {
+        get { return values[ConfigurationDataValueName.LevelTwoStartingScore]; }
+    }
+
+    public int LevelThreeStartingScore
+    {
+        get { return values[ConfigurationDataValueName.LevelThreeStartingScore]; }
+    }
+
+    public int LevelFourStartingScore
+    {
+        get { return values[ConfigurationDataValueName.LevelFourStartingScore]; }
+    }
+
+    public int LevelFiveStartingScore
+    {
+        get { return values[ConfigurationDataValueName.LevelFiveStartingScore]; }
+    }
+
+    #endregion
+
+    #region Defence Tower Prices
+
+    public int CanonPrice
+    {
+        get { return values[ConfigurationDataValueName.CanonPrice]; }
+    }
+
+    public int GravityLauncherPrice
+    {
+        get { return values[ConfigurationDataValueName.GravityLauncherPrice]; }
+    }
+
+    public int LaserTowerPrice
+    {
+        get { return values[ConfigurationDataValueName.LaserTowerPrice]; }
+    }
+
+    public int MissileLauncherPrice
+    {
+        get { return values[ConfigurationDataValueName.MissileLauncherPrice]; }
+    }
+
+    public int PlasmaLauncherPrice
+    {
+        get { return values[ConfigurationDataValueName.PlasmaLauncherPrice]; }
+    }
+
+    #endregion
+
     #endregion
 
     #region Constructor
@@ -307,6 +452,31 @@ public class ConfigurationData
         values.Add(ConfigurationDataValueName.MegaLaserLevelOneDamage, 120);
         values.Add(ConfigurationDataValueName.MegaLaserLevelTwoDamage, 220);
         values.Add(ConfigurationDataValueName.MegaLaserLevelThreeDamage, 320);
+        values.Add(ConfigurationDataValueName.LevelOneGreenShipPoints, 25);
+        values.Add(ConfigurationDataValueName.LevelTwoGreenShipPoints, 50);
+        values.Add(ConfigurationDataValueName.LevelThreeGreenShipPoints, 75);
+        values.Add(ConfigurationDataValueName.LevelFourGreenShipPoints, 100);
+        values.Add(ConfigurationDataValueName.LevelFiveGreenShipPoints, 125);
+        values.Add(ConfigurationDataValueName.LevelOneYellowShipPoints, 50);
+        values.Add(ConfigurationDataValueName.LevelTwoYellowShipPoints, 75);
+        values.Add(ConfigurationDataValueName.LevelThreeYellowShipPoints, 100);
+        values.Add(ConfigurationDataValueName.LevelFourYellowShipPoints, 125);
+        values.Add(ConfigurationDataValueName.LevelFiveYellowShipPoints, 150);
+        values.Add(ConfigurationDataValueName.LevelOneRedShipPoints, 125);
+        values.Add(ConfigurationDataValueName.LevelTwoRedShipPoints, 150);
+        values.Add(ConfigurationDataValueName.LevelThreeRedShipPoints, 175);
+        values.Add(ConfigurationDataValueName.LevelFourRedShipPoints, 200);
+        values.Add(ConfigurationDataValueName.LevelFiveRedShipPoints, 225);
+        values.Add(ConfigurationDataValueName.CanonPrice, 150);
+        values.Add(ConfigurationDataValueName.GravityLauncherPrice, 250);
+        values.Add(ConfigurationDataValueName.LaserTowerPrice, 350);
+        values.Add(ConfigurationDataValueName.MissileLauncherPrice, 500);
+        values.Add(ConfigurationDataValueName.PlasmaLauncherPrice, 1000);
+        values.Add(ConfigurationDataValueName.LevelOneStartingScore, 200);
+        values.Add(ConfigurationDataValueName.LevelTwoStartingScore, 500);
+        values.Add(ConfigurationDataValueName.LevelThreeStartingScore, 1500);
+        values.Add(ConfigurationDataValueName.LevelFourStartingScore, 3000);
+        values.Add(ConfigurationDataValueName.LevelFiveStartingScore, 5000);
 
     }
 

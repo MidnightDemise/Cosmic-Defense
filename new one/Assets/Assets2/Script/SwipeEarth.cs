@@ -13,13 +13,20 @@ public class SwipeEarth : MonoBehaviour
     private Vector2 startpos;
     private Quaternion initialRotation;
     private Quaternion targetRotation;
-    private float health = 5000;
+    
+    private float maxhealth = 5000;
+    private float currentHealth;
+
+    public HealthBar healthBar;
 
     //for event handling 
     LevelFailedEvent levelFailedEvent = new LevelFailedEvent();
 
     private void Start()
     {
+        
+        currentHealth = maxhealth;
+        healthBar.SetMaxHealth(maxhealth);
         // declaring invoker
         EventManager.AddLevelFailedEventInvoker(this);
         
@@ -69,22 +76,15 @@ public class SwipeEarth : MonoBehaviour
                 rotating = false;
             }
         }
-
-        //Debug.Log(health);
-        if(health < 0 )
-        {
-            //Destroy(gameObject);
-        }
-
-
     }
 
 
     public void Damage(float damage)
     {
-        health -= damage;
-        Debug.Log(health);
-        if (health < 0)
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        Debug.Log(currentHealth);
+        if (currentHealth < 0)
         {
             levelFailedEvent.Invoke();
             Destroy(gameObject);
@@ -93,7 +93,7 @@ public class SwipeEarth : MonoBehaviour
 
     public void setHealth(float value)
     {
-        health = value;
+        maxhealth = value;
     }
 
     public void AddLevelFailedEventListener(UnityAction listener)

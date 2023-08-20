@@ -43,12 +43,63 @@ public static class ConfigurationUtils
     }
 
 
+    public static int GreenShipPoints
+    {
+        get { return LevelsUtils.GreenShipPoints; }
+    }
+
+    public static int YellowShipPoints
+    {
+        get { return LevelsUtils.YellowShipPoints; }
+    }
+
+    public static int RedShipPoints
+    {
+        get { return LevelsUtils.RedShipPoints; }
+    }
+
+    public static int StartingScore
+    {
+        get { return LevelsUtils.LevelStartingScore; }
+    }
+
+
+    #region Defence Towers Price
+
+    public static int CanonPrice
+    {
+        get { return configurationData.CanonPrice; }
+    }
+
+    public static int GravityLauncherPrice
+    {
+        get { return configurationData.GravityLauncherPrice; }
+    }
+
+    public static int LaserTowerPrice
+    {
+        get { return configurationData.LaserTowerPrice; }
+    }
+
+    public static int MissileLauncherPrice
+    {
+        get { return configurationData.MissileLauncherPrice; }
+    }
+
+    public static int PlasmaLauncherPrice
+    {
+        get { return configurationData.PlasmaLauncherPrice; }
+    }
+
+    #endregion
+
     //for levels parameter
 
+    #region Green Enemy
 
     public static int LevelOneGreenEnemyHealth
     {
-    #region Green Enemy
+    
         get { return configurationData.LevelOneGreenEnemyHealth; }
     }
 
@@ -135,7 +186,6 @@ public static class ConfigurationUtils
 
     #endregion
 
-    #endregion
 
     #region Canon Level Wise Damage
 
@@ -213,7 +263,137 @@ public static class ConfigurationUtils
         get { return configurationData.MegaLaserLevelThreeDamage; }
     }
 
+    public static int MegaLaserLevelFourDamage
+    {
+        get { return configurationData.MegaLaserLevelThreeDamage; }
+    }
+
+    public static int MegaLaserLevelFiveDamage
+    {
+        get { return configurationData.MegaLaserLevelThreeDamage; }
+    }
+
     #endregion
+
+    #region Green Ship Level wise Points
+
+    public static int LevelOneGreenShipPoints
+    {
+        get { return configurationData.LevelOneGreenShipPoints; }
+    }
+
+    public static int LevelTwoGreenShipPoints
+    {
+        get { return configurationData.LevelTwoGreenShipPoints; }
+    }
+
+    public static int LevelThreeGreenShipPoints
+    {
+        get { return configurationData.LevelThreeGreenShipPoints; }
+    }
+
+    public static int LevelFourGreenShipPoints
+    {
+        get { return configurationData.LevelFourGreenShipPoints; }
+    }
+
+    public static int LevelFiveGreenShipPoints
+    {
+        get { return configurationData.LevelFiveGreenShipPoints; }
+    }
+
+    #endregion
+
+    #region Yellow Ship Level Wise Points
+
+    public static int LevelOneYellowShipPoints
+    {
+        get { return configurationData.LevelOneYellowShipPoints; }
+    }
+
+    public static int LevelTwoYellowShipPoints
+    {
+        get { return configurationData.LevelTwoYellowShipPoints; }
+    }
+
+    public static int LevelThreeYellowShipPoints
+    {
+        get { return configurationData.LevelThreeYellowShipPoints; }
+    }
+
+    public static int LevelFourYellowShipPoints
+    {
+        get { return configurationData.LevelFourYellowShipPoints; }
+    }
+
+    public static int LevelFiveYellowShipPoints
+    {
+        get { return configurationData.LevelFiveYellowShipPoints; }
+    }
+
+    #endregion
+
+    #region Red Ship Level Wise Points
+
+    public static int LevelOneRedShipPoints
+    {
+        get { return configurationData.LevelOneRedShipPoints; }
+    }
+
+    public static int LevelTwoRedShipPoints
+    {
+        get { return configurationData.LevelTwoRedShipPoints; }
+    }
+
+    public static int LevelThreeRedShipPoints
+    {
+        get { return configurationData.LevelThreeRedShipPoints; }
+    }
+
+    public static int LevelFourRedShipPoints
+    {
+        get { return configurationData.LevelFourRedShipPoints; }
+    }
+
+    public static int LevelFiveRedShipPoints
+    {
+        get { return configurationData.LevelFiveRedShipPoints; }
+    }
+
+    #endregion
+
+    #region Level Wise Starting Points
+
+    public static int LevelOneStartingScore
+    {
+        get { return configurationData.LevelOneStartingScore; }
+    }
+
+    public static int LevelTwoStartingScore
+    {
+        get { return configurationData.LevelTwoStartingScore; }
+    }
+
+    public static int LevelThreeStartingScore
+    {
+        get { return configurationData.LevelThreeStartingScore; }
+    }
+
+    public static int LevelFourStartingScore
+    {
+        get { return configurationData.LevelFourStartingScore; }
+    }
+
+    public static int LevelFiveStartingScore
+    {
+        get { return configurationData.LevelFiveStartingScore; }
+    }
+
+    #endregion
+
+
+    #endregion
+
 
 
     #region Public Methods

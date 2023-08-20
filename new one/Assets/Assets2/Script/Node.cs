@@ -18,6 +18,8 @@ public class Node : MonoBehaviour
         startColor = renderer.material.color;
         planet = GameObject.FindWithTag("planet").transform;
     }
+
+  
     private void OnMouseEnter()
     {
         renderer.material.color = color;
@@ -29,7 +31,6 @@ public class Node : MonoBehaviour
         if(turret != null)
         {
             return;
-
         }
 
         GameObject turretToBuild = BuildManager.instance.GetGameTurret();
@@ -38,7 +39,8 @@ public class Node : MonoBehaviour
         BuildManager.numberOfTurrets.Add(turret);
 
         turret.transform.SetParent(planet);
-       
+        
+
     }
 
     private void OnMouseExit()

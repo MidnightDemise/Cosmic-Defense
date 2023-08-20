@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GreenSip : MonoBehaviour
 {
@@ -18,15 +19,27 @@ public class GreenSip : MonoBehaviour
     private GameObject planetPrefab;
 
     private EnemyManager enemyManager;
+
+
+    // for events 
+    GreenShipPointsAddedEvent greenShipPointsAddedEvent = new GreenShipPointsAddedEvent();
+
+    // for scoring 
+    int points; 
+
     // Start is called before the first frame update
     void Start()
     {
+        points = ConfigurationUtils.GreenShipPoints;
+
         health = ConfigurationUtils.GreenEnemyHealth;
         rb = gameObject.GetComponent<Rigidbody>();
         Target = GameObject.FindGameObjectWithTag("planet").transform;
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
 
         planetPrefab = GameObject.FindWithTag("planet");
+
+        EventManager.AddGreenShipPointsAddedEventInvoker(this);
     }
 
     // Update is called once per frame
@@ -61,8 +74,10 @@ public class GreenSip : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            
             AudioManager.Play(ClipName.EnemyExplode);
-
+            
+            
             foreach (GameObject line in linerenderers)
             {
                 if (line.GetComponent<LineRenderer>().enabled)
@@ -70,9 +85,8 @@ public class GreenSip : MonoBehaviour
                     line.GetComponent<LineRenderer>().enabled = false;
                 }
             }
+            
             enemyManager.enemies.Remove(gameObject);
-
-
             ReturnToPool();
         }
     }
@@ -82,6 +96,8 @@ public class GreenSip : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            greenShipPointsAddedEvent.Invoke(points);
+            EventManager.RemoveGreenShipPointsAddedEventInvoker(this);
             AudioManager.Play(ClipName.EnemyExplode);
             enemyManager.enemies.Remove(gameObject);
             ReturnToPool();
@@ -127,6 +143,11 @@ public class GreenSip : MonoBehaviour
         {
             enemyManager.ReturnShipToPool(gameObject);
         }
+    }
+
+    public void AddGreenShipPointsAddedEventListener(UnityAction<int> listener)
+    {
+        greenShipPointsAddedEvent.AddListener(listener);
     }
 
 }

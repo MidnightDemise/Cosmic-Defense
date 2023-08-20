@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Events;
 
 public class yelloShip : MonoBehaviour
 {
@@ -16,8 +17,15 @@ public class yelloShip : MonoBehaviour
     private EnemyManager enemyManager;
     private bool isStunned;
 
+    int points;
+
+    //for events
+    YellowShipPointsAddedEvent yellowShipPointsAddedEvent = new YellowShipPointsAddedEvent();
+
     void Start()
     {
+        points = ConfigurationUtils.YellowShipPoints;
+
         planet = GameObject.FindWithTag("planet").transform;
         rb = gameObject.GetComponent<Rigidbody>();
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
@@ -25,6 +33,8 @@ public class yelloShip : MonoBehaviour
         health = ConfigurationUtils.YellowEnemyHealth;
 
         planetPrefab = GameObject.FindWithTag("planet");
+
+        EventManager.AddYellowShipPointsAddedEventInvoker(this);
 
     }
 
@@ -61,8 +71,9 @@ public class yelloShip : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            yellowShipPointsAddedEvent.Invoke(points);
+            EventManager.RemoveYellowShipPointsAddedEventInvoker(this);
             enemyManager.enemies.Remove(gameObject);
-
             ReturnToPool();
         }
     }
@@ -99,6 +110,11 @@ public class yelloShip : MonoBehaviour
         {
             enemyManager.ReturnShipToPool(gameObject);
         }
+    }
+
+    public void AddYellowShipPointsAddedEventListener(UnityAction<int> listener)
+    {
+        yellowShipPointsAddedEvent.AddListener(listener);
     }
 
 }

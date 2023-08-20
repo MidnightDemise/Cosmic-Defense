@@ -18,6 +18,10 @@ public class TurretMain : MonoBehaviour
     public GameObject fishBoss;
     Quaternion originalRotation;
 
+    int canonPrice = 150;
+
+
+
     private void Awake()
     {
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
@@ -75,7 +79,10 @@ public class TurretMain : MonoBehaviour
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, originalRotation, rotationSpeed * Time.deltaTime);
             }
+        
         }
+
+
     
 
     public void setStun(bool value)

@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class LevelComplete : MonoBehaviour
 {
+    public int levelToUnlock;
+    int numberOfUnlockedLevels;
+
     // Start is called before the first frame update
     void Start()
     {
+        numberOfUnlockedLevels = PlayerPrefs.GetInt("levelsUnlocked");
+
+        if (numberOfUnlockedLevels <= levelToUnlock)
+        {
+            PlayerPrefs.SetInt("levelsUnlocked", numberOfUnlockedLevels + 1);
+        }
+        
         Time.timeScale = 0;
     }
 

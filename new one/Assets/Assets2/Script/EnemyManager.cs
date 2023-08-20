@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -41,29 +42,33 @@ public class EnemyManager : MonoBehaviour
     private GameObjectPool greenShipPool;
     private GameObjectPool yellowShipPool;
     private GameObjectPool redShipPool;
-    public int initialPoolSize = 10;
+
+    
 
     // handling boss instantiation
     public GameObject[] bossPrefabs;
     private bool bossSpawned = false;
 
-   
-    
+    //handling build manager button 
+    [SerializeField]
+    Button buildButton;
+
     void Start()
     {
+        greenShipPool = new GameObjectPool(greenShipPrefab, 5);
+        yellowShipPool = new GameObjectPool(yellowShipPrefab, 5);
+        redShipPool = new GameObjectPool(redShipPrefab, 5);
+
         EventManager.AddLevelCompleteEventInvoker(this);
+
         
 
         GameObject[] spawnObjects = GameObject.FindGameObjectsWithTag("spawnPoint");
 
-        for(int i = 0; i < spawnObjects.Length; i++)
+        for (int i = 0; i < spawnObjects.Length; i++)
         {
             spawnPoints[i] = spawnObjects[i].transform;
         }
-
-        greenShipPool = new GameObjectPool(greenShipPrefab, initialPoolSize);
-        yellowShipPool = new GameObjectPool(yellowShipPrefab, initialPoolSize);
-        redShipPool = new GameObjectPool(redShipPrefab, initialPoolSize);
     }
 
     // Update is called once per frame
@@ -72,19 +77,21 @@ public class EnemyManager : MonoBehaviour
         timer += Time.deltaTime;
 
         if (timer > preparationTimer && timer <= 60f)
-        {   
+        {
+            buildButton.GetComponent<Button>().enabled = false;
+            buildButton.GetComponent<Image>().enabled = false;
             spawnWave1();
             timer += Time.deltaTime;
         }
-        else if(timer >= 60f && timer <= 90f)
+        else if (timer >= 60f && timer <= 90f)
         {
-            DropRateOfGreen = 4000;
-            DropRateOfYellow =2000;
-            DropRateOfRed = 1000;
-           spawnWave2();
+            DropRateOfGreen = 40000;
+            DropRateOfYellow = 20200;
+            DropRateOfRed = 10500;
+            spawnWave2();
             timer += Time.deltaTime;
         }
-        else if(timer >= 90f && !levelComplete)
+        else if (timer >= 90f && !levelComplete)
         {
             spawnWave3();
             if (timer >= 120f && LevelsUtils.LevelThree || LevelsUtils.LevelFour || LevelsUtils.LevelFive)
@@ -95,12 +102,13 @@ public class EnemyManager : MonoBehaviour
                     bossSpawned = true;
                 }
             }
-            else if(timer >= 120f)
+            else if (timer >= 120f)
             {
+                
                 levelCompleteEvent.Invoke();
                 levelComplete = true;
             }
-            
+
         }
     }
 
@@ -108,11 +116,11 @@ public class EnemyManager : MonoBehaviour
     void spawnWave1()
     {
 
-        
-            spawnGreenShip(1,DropRateOfGreen);
-            spawnYellowShip(1,DropRateOfYellow);
-            spawnRedShip(1, DropRateOfRed) ;
-       
+
+        spawnGreenShip(1, DropRateOfGreen);
+        spawnYellowShip(1, DropRateOfYellow);
+        spawnRedShip(1, DropRateOfRed);
+
 
     }
 
@@ -123,7 +131,7 @@ public class EnemyManager : MonoBehaviour
         spawnYellowShip(1, DropRateOfYellow);
         spawnRedShip(1, DropRateOfRed);
 
-       
+
 
     }
 
@@ -136,9 +144,9 @@ public class EnemyManager : MonoBehaviour
         spawnRedShip(1, DropRateOfRed);
     }
 
-    void spawnGreenShip(int amount,int dropRate)
+    void spawnGreenShip(int amount, int dropRate)
     {
-        for(int i = 0; i < amount; i++)
+        for (int i = 0; i < amount; i++)
         {
             if (Random.Range(1, dropRate) == 2)
             {
@@ -152,36 +160,36 @@ public class EnemyManager : MonoBehaviour
             }
 
         }
-       
+
     }
 
     void spawnYellowShip(int amount, int dropRate)
     {
         for (int i = 0; i < amount; i++)
         {
-            if(Random.Range(1,dropRate) == 2)
+            if (Random.Range(1, dropRate) == 2)
             {
                 //spawn(yellowShipPrefab);
                 GameObject enemy = yellowShipPool.GetObjectFromPool();
-                if(enemy != null)
+                if (enemy != null)
                 {
                     enemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
                     enemies.Add(enemy);
                 }
-                
+
             }
         }
     }
 
-    void spawnRedShip(int amount,int dropRate)
+    void spawnRedShip(int amount, int dropRate)
     {
-       for(int i = 0; i< amount; i++)
+        for (int i = 0; i < amount; i++)
         {
-            if(Random.Range(1,dropRate) == 2)
+            if (Random.Range(1, dropRate) == 2)
             {
                 //spawn(redShipPrefab);
                 GameObject enemy = redShipPool.GetObjectFromPool();
-                if(enemy != null)
+                if (enemy != null)
                 {
                     enemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
                     enemies.Add(enemy);
@@ -201,7 +209,7 @@ public class EnemyManager : MonoBehaviour
 
     void SpawnBoss()
     {
-        if(bossPrefabs.Length > 0 && LevelsUtils.LevelThree)
+        if (bossPrefabs.Length > 0 && LevelsUtils.LevelThree)
         {
             GameObject bossPrefab = bossPrefabs[0];
             int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
@@ -210,7 +218,7 @@ public class EnemyManager : MonoBehaviour
             enemies.Add(bossOne);
 
         }
-        else if(bossPrefabs.Length > 0 && LevelsUtils.LevelFour)
+        else if (bossPrefabs.Length > 0 && LevelsUtils.LevelFour)
         {
             GameObject bossPrefab = bossPrefabs[1];
             int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
@@ -218,7 +226,7 @@ public class EnemyManager : MonoBehaviour
             GameObject bossTwo = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
             enemies.Add(bossTwo);
         }
-        else if(bossPrefabs.Length > 0 && LevelsUtils.LevelFive)
+        else if (bossPrefabs.Length > 0 && LevelsUtils.LevelFive)
         {
             GameObject bossPrefab = bossPrefabs[2];
             int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
@@ -239,7 +247,7 @@ public class EnemyManager : MonoBehaviour
         {
             greenShipPool.ReturnObjectToPool(ship);
         }
-        
+
     }
 
 
@@ -247,7 +255,7 @@ public class EnemyManager : MonoBehaviour
     {
         levelCompleteEvent.AddListener(listener);
     }
-   
+
 
 
 }
