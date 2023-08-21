@@ -45,7 +45,13 @@ public class GreenSip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GravityBallScript.gameObjects.Contains(gameObject) && planetPrefab != null)
+        Vector3 newPosition = transform.position;
+        float amplitude = 50.0f;
+        float frequency = 0.5f;
+        newPosition.x += Mathf.Sin(Time.time * frequency) * 1 / amplitude;
+        transform.position = newPosition;
+
+        if (!GravityBallScript.gameObjects.Contains(gameObject) && planetPrefab != null)
         {
 
             Vector3 dir = Target.position - transform.position;

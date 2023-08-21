@@ -33,6 +33,12 @@ public class bulletScript : MonoBehaviour
     {
 
         transform.position +=  initialDirection * 10f * Time.deltaTime;
+
+
+        if(transform.position.y > 50 || transform.position.y  < -50 || transform.position.x > 50 || transform.position.x < -50)
+        {
+            Destroy(gameObject);
+        }
         
 
         

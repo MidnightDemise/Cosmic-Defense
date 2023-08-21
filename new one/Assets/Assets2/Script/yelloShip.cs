@@ -41,6 +41,11 @@ public class yelloShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 newPosition = transform.position;
+        float amplitude = 45.0f;  
+        float frequency = 0.5f;  
+        newPosition.x += Mathf.Sin(Time.time * frequency) * 1/amplitude;
+        transform.position = newPosition;
 
         if (!GravityBallScript.gameObjects.Contains(gameObject) && planetPrefab != null)
         {

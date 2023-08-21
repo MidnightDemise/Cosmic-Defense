@@ -225,6 +225,8 @@ MonoBehaviour:
     type: 3}
   bulletPoint: {fileID: 8269889599432067363}
   rotationSpeed: 5
+  stunTimer: 0
+  currentStunTimer: 0
   fishBoss: {fileID: 8671863335910952829, guid: 70529fdcac5e7c643befcb94ba21b980,
     type: 3}
 --- !u!135 &624518601622976799

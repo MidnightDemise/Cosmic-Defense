@@ -28,6 +28,13 @@ public class GravityBallScript : MonoBehaviour
 
     void Update()
     {
+
+
+        if (transform.position.y > 50 || transform.position.y < -50 || transform.position.x > 50 || transform.position.x < -50)
+        {
+            Destroy(gameObject);
+        }
+
         if (initialDirection != null)
         {
             transform.position += initialDirection * 5f * Time.deltaTime;

@@ -39,7 +39,7 @@ public class Node : MonoBehaviour
         BuildManager.numberOfTurrets.Add(turret);
         turret.transform.SetParent(planet);
         BuildManager.turretToBuild = null;
-
+        BuildManager.isCLickedOnButton = false;
 
     }
 

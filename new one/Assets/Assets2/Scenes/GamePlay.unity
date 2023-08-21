@@ -905,14 +905,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.23548171, y: -0, z: -0, w: 0.9718788}
-  m_LocalPosition: {x: 4.24, y: 14.2, z: -23.6}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.24, y: 2.9, z: -23.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 27.24, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2523,8 +2523,8 @@ RectTransform:
   m_Father: {fileID: 950460998}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2978,7 +2978,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 10.7, y: -0.6}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8946,9 +8946,15 @@ MonoBehaviour:
     type: 3}
   MegaLaserLauncher: {fileID: 2922538458015758967, guid: 08f140c1aed0ffd42bb14db42e82948b,
     type: 3}
+  turretButton: {fileID: 1406695703}
+  missileButton: {fileID: 1627033352}
+  laserButton: {fileID: 928840308}
+  gravityButton: {fileID: 281430938}
+  plasmaButton: {fileID: 905728691}
   numberOfPlates: 20
   BuildButton: {fileID: 607475058}
   planetPos: {fileID: 1390728375}
+  turretButtons: []
 --- !u!4 &1207081734
 Transform:
   m_ObjectHideFlags: 0
@@ -9290,8 +9296,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443468642}
-  m_LocalRotation: {x: 0.23548171, y: -0, z: -0, w: 0.9718788}
-  m_LocalPosition: {x: 4.24, y: 14.2, z: -23.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.24, y: 2.9, z: -23.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9959,7 +9965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1774931630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10474,7 +10480,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.85
+  m_Radius: 0.9
   m_Center: {x: -0.009745926, y: 0.006980717, z: -0.0042635202}
 --- !u!114 &2123236911 stripped
 MonoBehaviour:

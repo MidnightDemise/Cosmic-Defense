@@ -43,6 +43,11 @@ public class RedShip: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 newPosition = transform.position;
+        float amplitude = 40.0f;
+        float frequency = 0.5f;
+        newPosition.x += Mathf.Sin(Time.time * frequency) * 1 / amplitude;
+        transform.position = newPosition;
 
         if (!GravityBallScript.gameObjects.Contains(gameObject) && !isStunned && planetPrefab != null)
         {

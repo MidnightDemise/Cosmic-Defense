@@ -17,6 +17,22 @@ public class BuildManager : MonoBehaviour
     public GameObject missileLauncher;
     public GameObject gravityBall;
     public GameObject MegaLaserLauncher;
+
+
+
+    //for Buttons To setAcTIVE AND SETFALSE
+
+    public GameObject turretButton;
+    public GameObject missileButton;
+    public GameObject laserButton;
+    public GameObject gravityButton;
+    public GameObject plasmaButton;
+
+
+
+
+
+    // NODE STUFF
     public float numberOfPlates = 20;
     private List<GameObject> Nodes = new List<GameObject>();
     public GameObject BuildButton;
@@ -36,17 +52,12 @@ public class BuildManager : MonoBehaviour
     int missileLauncherCost;
     int plasmaLauncherCost;
 
+    public static bool isCLickedOnButton;
     // for fixing turret placements
 
-    private GameObject selectedWeaponType;
-    
-    bool canonButtonClicked = false;
-    bool gravityLauncherButtonClicked = false;
-    bool laserButtonClicked = false;
-    bool missileLauncherButtonClicked = false;
-    bool plasmaLauncherButtonClicked = false;
 
-    
+
+    public GameObject[] turretButtons;
 
 
     // Start is called before the first frame update
@@ -56,7 +67,7 @@ public class BuildManager : MonoBehaviour
 
         originalPosCamera = camera.position;
         originalRotCamera = camera.rotation;
-        
+
         if (instance != null)
         {
             return;
@@ -64,12 +75,16 @@ public class BuildManager : MonoBehaviour
         instance = this;
 
 
+
     }
 
     private void Start()
-    {   
+    {
+
+
+
         EventManager.AddCostDeductedEventInvoker(this);
-        
+
         canonCost = ConfigurationUtils.CanonPrice;
         gravityLauncherCost = ConfigurationUtils.GravityLauncherPrice;
         laserTowerCost = ConfigurationUtils.LaserTowerPrice;
@@ -77,26 +92,41 @@ public class BuildManager : MonoBehaviour
         plasmaLauncherCost = ConfigurationUtils.PlasmaLauncherPrice;
 
 
+
     }
 
     private void Update()
     {
-
-        if (turretToBuild != null)
+        if (isCLickedOnButton)
         {
-            return;
+            turretButton.SetActive(false);
+            missileButton.SetActive(false);
+            laserButton.SetActive(false);
+            gravityButton.SetActive(false);
+            plasmaButton.SetActive(false);
+
+
+        }
+        else if(!BuildButton.activeSelf)
+        {
+            turretButton.SetActive(true);
+            missileButton.SetActive(true);
+            laserButton.SetActive(true);
+            gravityButton.SetActive(true);
+            plasmaButton.SetActive(true);
+
         }
 
         if (BuildButton.activeSelf)
         {
-             foreach(GameObject Node in Nodes)
+            foreach (GameObject Node in Nodes)
             {
                 Node.SetActive(false);
             }
         }
         else
         {
-            foreach(GameObject Node in Nodes)
+            foreach (GameObject Node in Nodes)
             {
                 Node.SetActive(true);
             }
@@ -108,73 +138,61 @@ public class BuildManager : MonoBehaviour
 
     public void setTurret()
     {
-            AudioManager.Play(ClipName.MenuButtonClick);
-            turretToBuild = turret;
-            costDeductedEvent.Invoke(canonCost);
-               
+
+        costDeductedEvent.Invoke(canonCost);
+        turretToBuild = turret;
+        isCLickedOnButton = true;
+
     }
 
     public void SetMissile()
     {
-            AudioManager.Play(ClipName.MenuButtonClick);
-            turretToBuild = missileLauncher;
-            costDeductedEvent.Invoke(missileLauncherCost);
-            
-        
+
+        costDeductedEvent.Invoke(missileLauncherCost);
+        turretToBuild = missileLauncher;
+        isCLickedOnButton = true;
     }
 
     public void SetLaser()
     {
-            AudioManager.Play(ClipName.MenuButtonClick);
-            turretToBuild = laserLauncher;
-            costDeductedEvent.Invoke(laserTowerCost);
-            laserButtonClicked = true;
-        
-       
-        
+
+        costDeductedEvent.Invoke(laserTowerCost);
+        turretToBuild = laserLauncher;
+        isCLickedOnButton = true;
     }
-    
+
     public void setGravityBall()
     {
-            AudioManager.Play(ClipName.MenuButtonClick);
-            turretToBuild = gravityBall;
-            costDeductedEvent.Invoke(gravityLauncherCost);
-            gravityLauncherButtonClicked = true;
-        
-       
-        
+
+        costDeductedEvent.Invoke(gravityLauncherCost);
+        turretToBuild = gravityBall;
+        isCLickedOnButton = true;
+
     }
 
     public void setMegaLaser()
     {
-            AudioManager.Play(ClipName.MenuButtonClick);
-            turretToBuild = MegaLaserLauncher;
-            costDeductedEvent.Invoke(plasmaLauncherCost);
-            plasmaLauncherButtonClicked = true;
-        
-       
+
+        costDeductedEvent.Invoke(plasmaLauncherCost);
+        turretToBuild = MegaLaserLauncher;
+        isCLickedOnButton = true;
     }
     public GameObject GetGameTurret()
     {
-            return turretToBuild;        
-    }
-
-    public void ResetTurret()
-    {
-        turretToBuild = null;
+        return turretToBuild;
     }
 
 
     private void createNodes()
     {
-        float angleStep  = 360f / numberOfPlates;
-        for(int i = 0; i < numberOfPlates; i++)
+        float angleStep = 360f / numberOfPlates;
+        for (int i = 0; i < numberOfPlates; i++)
         {
             angle = i * angleStep;
             float y = Mathf.Sin(Mathf.Deg2Rad * angle) * 4.308425f; //y = r * sin theta
             float x = Mathf.Cos(Mathf.Deg2Rad * angle) * 4.308425f;
             Vector3 platePosition = planetPos.position + new Vector3(x, y, 0);
-            Quaternion rotation = Quaternion.Euler(0, 0, -( 270 - angle));
+            Quaternion rotation = Quaternion.Euler(0, 0, -(270 - angle));
             GameObject plate = Instantiate(platePrefab, platePosition, rotation);
             plate.transform.SetParent(planetPos);
             Nodes.Add(plate);
@@ -182,16 +200,16 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-  
 
-   
+
+
 
     public void AddCostDeductedEventListener(UnityAction<int> listener)
     {
         costDeductedEvent.AddListener(listener);
     }
 
-  
 
-    
+
+
 }
