@@ -8,6 +8,8 @@ public static class AudioManager
     #region Fields
     static bool initialized = false;
 
+    static bool bgMusicInitialized = false;
+
     static AudioSource audioSource;
     static Dictionary<ClipName, AudioClip> audioClips = 
         new Dictionary<ClipName, AudioClip>();
@@ -19,6 +21,11 @@ public static class AudioManager
     {
         get { return initialized; }
 
+    }
+
+    public static bool BGMusicInitialized
+    {
+        get { return bgMusicInitialized; }
     }
 
     #endregion
@@ -43,6 +50,11 @@ public static class AudioManager
         audioClips.Add(ClipName.EnemyExplode, Resources.Load<AudioClip>("EnemyExplode"));
         audioClips.Add(ClipName.BossEnemyShot, Resources.Load<AudioClip>("BossEnemyShot"));
 
+    }
+
+    public static void InitializeBGMusic()
+    {
+        bgMusicInitialized = true;
     }
 
     public static void Play(ClipName name)

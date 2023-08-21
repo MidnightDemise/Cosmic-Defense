@@ -10,13 +10,6 @@ public class LevelComplete : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numberOfUnlockedLevels = PlayerPrefs.GetInt("levelsUnlocked");
-
-        if (numberOfUnlockedLevels <= levelToUnlock)
-        {
-            PlayerPrefs.SetInt("levelsUnlocked", numberOfUnlockedLevels + 1);
-        }
-        
         Time.timeScale = 0;
     }
 
@@ -30,6 +23,14 @@ public class LevelComplete : MonoBehaviour
 
     public void HandleNextButtonClicked()
     {
+        numberOfUnlockedLevels = PlayerPrefs.GetInt("levelsUnlocked");
+
+        if (numberOfUnlockedLevels <= levelToUnlock)
+        {
+            PlayerPrefs.SetInt("levelsUnlocked", numberOfUnlockedLevels + 1);
+            Debug.Log(numberOfUnlockedLevels);
+        }
+
         AudioManager.Play(ClipName.MenuButtonClick);
         Time .timeScale = 1;
         Destroy(gameObject);

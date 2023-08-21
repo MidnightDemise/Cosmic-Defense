@@ -71,6 +71,7 @@ public class yelloShip : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            AudioManager.Play(ClipName.EnemyExplode);
             yellowShipPointsAddedEvent.Invoke(points);
             EventManager.RemoveYellowShipPointsAddedEventInvoker(this);
             enemyManager.enemies.Remove(gameObject);

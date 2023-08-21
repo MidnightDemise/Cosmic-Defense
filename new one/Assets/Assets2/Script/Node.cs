@@ -35,11 +35,11 @@ public class Node : MonoBehaviour
 
         GameObject turretToBuild = BuildManager.instance.GetGameTurret();
         nodeRotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 180f);
-        turret = Instantiate(turretToBuild,transform.position,nodeRotation );
+        turret = Instantiate(turretToBuild, transform.position, nodeRotation);
         BuildManager.numberOfTurrets.Add(turret);
-
         turret.transform.SetParent(planet);
-        
+        BuildManager.turretToBuild = null;
+
 
     }
 

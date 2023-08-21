@@ -74,6 +74,7 @@ public class RedShip: MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            AudioManager.Play(ClipName.EnemyExplode);
             redShipPointsAddedEvent.Invoke(points);
             EventManager.RemoveRedShipPointsAddedEventInvoker(this);
             enemyManager.enemies.Remove(gameObject);

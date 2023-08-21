@@ -848,7 +848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0017349430ec6b94d9d3fe2ea693e90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToUnlock: 1
+  levelToUnlock: 4
 --- !u!114 &5562747293550096915
 MonoBehaviour:
   m_ObjectHideFlags: 0

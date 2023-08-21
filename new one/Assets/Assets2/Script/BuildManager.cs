@@ -10,7 +10,7 @@ public class BuildManager : MonoBehaviour
     public static List<GameObject> numberOfTurrets = new List<GameObject>();
     public static BuildManager instance;
     public Transform camera;
-    private GameObject turretToBuild;
+    public static GameObject turretToBuild;
     public GameObject platePrefab;
     public GameObject turret;
     public GameObject laserLauncher;
@@ -46,6 +46,8 @@ public class BuildManager : MonoBehaviour
     bool missileLauncherButtonClicked = false;
     bool plasmaLauncherButtonClicked = false;
 
+    
+
 
     // Start is called before the first frame update
     void Awake()
@@ -65,10 +67,7 @@ public class BuildManager : MonoBehaviour
     }
 
     private void Start()
-    {
-        
-        
-        
+    {   
         EventManager.AddCostDeductedEventInvoker(this);
         
         canonCost = ConfigurationUtils.CanonPrice;
@@ -82,7 +81,12 @@ public class BuildManager : MonoBehaviour
 
     private void Update()
     {
-        
+
+        if (turretToBuild != null)
+        {
+            return;
+        }
+
         if (BuildButton.activeSelf)
         {
              foreach(GameObject Node in Nodes)
@@ -104,79 +108,60 @@ public class BuildManager : MonoBehaviour
 
     public void setTurret()
     {
-        if(!canonButtonClicked)
-        {
-            selectedWeaponType = turret;
+            AudioManager.Play(ClipName.MenuButtonClick);
+            turretToBuild = turret;
             costDeductedEvent.Invoke(canonCost);
-            canonButtonClicked = true; 
-        }
-        else
-        {
-            selectedWeaponType = null;
-        }
-        
+               
     }
 
     public void SetMissile()
     {
-        if(!missileLauncherButtonClicked)
-        {
-            selectedWeaponType = missileLauncher;
+            AudioManager.Play(ClipName.MenuButtonClick);
+            turretToBuild = missileLauncher;
             costDeductedEvent.Invoke(missileLauncherCost);
-            missileLauncherButtonClicked = true;
-        }
-        else
-        {
-            selectedWeaponType = null;
-        }
+            
+        
     }
 
     public void SetLaser()
     {
-        if(!laserButtonClicked)
-        {
-            selectedWeaponType = laserLauncher;
+            AudioManager.Play(ClipName.MenuButtonClick);
+            turretToBuild = laserLauncher;
             costDeductedEvent.Invoke(laserTowerCost);
             laserButtonClicked = true;
-        }
-        else
-        {
-            selectedWeaponType=null;
-        }
+        
+       
         
     }
     
     public void setGravityBall()
     {
-        if(!gravityLauncherButtonClicked)
-        {
-            selectedWeaponType = gravityBall;
+            AudioManager.Play(ClipName.MenuButtonClick);
+            turretToBuild = gravityBall;
             costDeductedEvent.Invoke(gravityLauncherCost);
             gravityLauncherButtonClicked = true;
-        }
-        else
-        {
-            selectedWeaponType = null;
-        }
+        
+       
         
     }
 
     public void setMegaLaser()
     {
-        if(!plasmaLauncherButtonClicked)
-        {
-            selectedWeaponType = MegaLaserLauncher;
+            AudioManager.Play(ClipName.MenuButtonClick);
+            turretToBuild = MegaLaserLauncher;
             costDeductedEvent.Invoke(plasmaLauncherCost);
             plasmaLauncherButtonClicked = true;
-        }
-        else
-        {
-            selectedWeaponType = null;
-        }
+        
+       
     }
     public GameObject GetGameTurret()
     {
-            return selectedWeaponType;        
+            return turretToBuild;        
+    }
+
+    public void ResetTurret()
+    {
+        turretToBuild = null;
     }
 
 

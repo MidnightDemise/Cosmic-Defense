@@ -50,6 +50,11 @@ public class GamePlayMenu : MonoBehaviour
         get { return score; }
     }
 
+    public int CurrentScore
+    {
+        get { return currentScore; }
+    }
+
     #endregion
 
     private void Start()

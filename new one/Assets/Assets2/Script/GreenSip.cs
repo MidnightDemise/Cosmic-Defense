@@ -96,6 +96,7 @@ public class GreenSip : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            AudioManager.Play(ClipName.EnemyExplode);
             greenShipPointsAddedEvent.Invoke(points);
             EventManager.RemoveGreenShipPointsAddedEventInvoker(this);
             AudioManager.Play(ClipName.EnemyExplode);
