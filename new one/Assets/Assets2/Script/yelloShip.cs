@@ -22,15 +22,22 @@ public class yelloShip : MonoBehaviour
     //for events
     YellowShipPointsAddedEvent yellowShipPointsAddedEvent = new YellowShipPointsAddedEvent();
 
-    void Start()
+
+    private void OnEnable()
     {
         points = ConfigurationUtils.YellowShipPoints;
+        health = ConfigurationUtils.YellowEnemyHealth;
 
+    }
+
+    void Start()
+    {
         planet = GameObject.FindWithTag("planet").transform;
+
         rb = gameObject.GetComponent<Rigidbody>();
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
         
-        health = ConfigurationUtils.YellowEnemyHealth;
+        
 
         planetPrefab = GameObject.FindWithTag("planet");
 

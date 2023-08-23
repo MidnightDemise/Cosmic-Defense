@@ -95,6 +95,7 @@ public class HomingScript : MonoBehaviour
             {
                 if (collider.tag == "GreenShip")
                 {
+                    AudioManager.Play(ClipName.EnemyExplode);
                     collider.GetComponent<GreenSip>().DamageShip(missileDamage);
                  //   enemyManager.enemies.Remove(collider.gameObject);
                    // Destroy(collider.gameObject);
@@ -105,25 +106,30 @@ public class HomingScript : MonoBehaviour
                 
                 if(collider.tag == "YellowShip")
                 {
+                    AudioManager.Play(ClipName.EnemyExplode);
                     collider.GetComponent<yelloShip>().DamageShip(missileDamage);
 
                 }
 
                 if (collider.tag == "RedShip")
                 {
+                    AudioManager.Play(ClipName.EnemyExplode);
                     collider.GetComponent<RedShip>().DamageShip(missileDamage);
 
                 }
                 if(collider.tag == "ArmyBoss")
                 {
+                    AudioManager.Play(ClipName.EnemyExplode);
                     collider.GetComponent<Boss1Script>().TakeDamage(missileDamage);
                 }
                 if(collider.tag == "LaserBoss")
                 {
+                    AudioManager.Play(ClipName.EnemyExplode);
                     collider.GetComponent<LaserBossScript>().TakeDamage(missileDamage);
                 }
                 if(collider.tag == "FishBoss")
                 {
+                    AudioManager.Play(ClipName.EnemyExplode);
                     collider.GetComponent<ElectricBossScript>().TakeDamage(missileDamage);
                 }
 

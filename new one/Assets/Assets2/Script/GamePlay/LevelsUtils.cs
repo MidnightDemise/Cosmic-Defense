@@ -126,6 +126,28 @@ public static class LevelsUtils
         }
     }
 
+    public static int LaserDamage
+    {
+        get
+        {
+            switch(levels)
+            {
+                case Levels.LevelOne:
+                    return ConfigurationUtils.LaserLevelOneDamage;
+                case Levels.LevelTwo:
+                    return ConfigurationUtils.LaserLevelTwoDamage;
+                case Levels.LevelThree:
+                    return ConfigurationUtils.LaserLevelThreeDamage;
+                case Levels.LevelFour:
+                    return ConfigurationUtils.LaserLevelFourDamage;
+                case Levels.LevelFive:
+                    return ConfigurationUtils.LaserLevelFiveDamage;
+                default:
+                    return ConfigurationUtils.LaserLevelOneDamage;
+            }
+        }
+    }
+
     public static int MegaLaserDamage
     {
         get

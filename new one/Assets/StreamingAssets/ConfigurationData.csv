@@ -26,6 +26,11 @@ MissileLauncherLevelTwoDamage,125
 MissileLauncherLevelThreeDamage,150
 MissileLauncherLevelFourDamage,170
 MissileLauncherLevelFiveDamage,175
+LaserLevelOneDamage,1
+LaserLevelTwoDamage,1
+LaserLevelThreeDamage,1
+LaserLevelFourDamage,1
+LaserLevelFiveDamage,1
 MegaLaserLevelOneDamage,120
 MegaLaserLevelTwoDamage,220
 MegaLaserLevelThreeDamage,320
@@ -46,7 +51,7 @@ LevelFourRedShipPoints,200
 LevelFiveRedShipPoints,225
 CanonPrice,150
 GravityLauncherPrice,250
-LaserTowerPrice,350
+LaserTowerPrice,2000
 MissileLauncherPrice,500
 PlasmaLauncherPrice,1000
 LevelOneStartingScore,200

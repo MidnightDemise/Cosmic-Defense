@@ -25,14 +25,19 @@ public class GreenSip : MonoBehaviour
     GreenShipPointsAddedEvent greenShipPointsAddedEvent = new GreenShipPointsAddedEvent();
 
     // for scoring 
-    int points; 
+    int points;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         points = ConfigurationUtils.GreenShipPoints;
 
         health = ConfigurationUtils.GreenEnemyHealth;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
         rb = gameObject.GetComponent<Rigidbody>();
         Target = GameObject.FindGameObjectWithTag("planet").transform;
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();

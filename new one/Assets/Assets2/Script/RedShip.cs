@@ -22,10 +22,16 @@ public class RedShip: MonoBehaviour
     //for events
     RedShipPointsAddedEvent redShipPointsAddedEvent = new RedShipPointsAddedEvent();
 
+    private void OnEnable()
+    {
+        points = ConfigurationUtils.RedShipPoints;
+        health = ConfigurationUtils.RedEnemyHealth;
+    }
+
     void Start()
     {
 
-        points = ConfigurationUtils.RedShipPoints;
+        
 
 
         planet = GameObject.FindGameObjectWithTag("planet").transform;
@@ -33,7 +39,7 @@ public class RedShip: MonoBehaviour
         enemyManager = GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>();
         
         
-        health = ConfigurationUtils.RedEnemyHealth;
+        
 
         planetPrefab = GameObject.FindWithTag("planet");
 

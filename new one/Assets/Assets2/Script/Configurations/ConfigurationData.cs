@@ -215,6 +215,35 @@ public class ConfigurationData
 
     #endregion
 
+    #region Laser Level Wise Damage
+
+    public int LaserLevelOneDamage
+    {
+        get { return values[ConfigurationDataValueName.LaserLevelOneDamage]; }
+    }
+
+    public int LaserLevelTwoDamage
+    {
+        get { return values[ConfigurationDataValueName.LaserLevelTwoDamage]; }
+    }
+
+    public int LaserLevelThreeDamage
+    {
+        get { return values[ConfigurationDataValueName.LaserLevelThreeDamage]; }
+    }
+
+    public int LaserLevelFourDamage
+    {
+        get { return values[ConfigurationDataValueName.LaserLevelFourDamage]; }
+    }
+
+    public int LaserLevelFiveDamage
+    {
+        get { return values[ConfigurationDataValueName.LaserLevelFiveDamage]; }
+    }
+
+    #endregion
+
     #region MegaLaser Level Wise Damage
 
     public int MegaLaserLevelOneDamage

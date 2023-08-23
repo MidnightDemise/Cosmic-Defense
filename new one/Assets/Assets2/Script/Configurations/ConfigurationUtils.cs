@@ -37,6 +37,11 @@ public static class ConfigurationUtils
         get { return LevelsUtils.MissileDamage; }
     }
 
+    public static int LaserDamage
+    {
+        get { return LevelsUtils.LaserDamage; }
+    }
+
     public static int MegaLaserDamage
     {
         get { return LevelsUtils.MegaLaserDamage; }
@@ -243,6 +248,38 @@ public static class ConfigurationUtils
     {
         get { return configurationData.MissileLevelFiveDamage; }
     }
+
+    #endregion
+
+    #region Laser Level Wise Damage
+
+    public static int LaserLevelOneDamage
+    {
+        get { return configurationData.LaserLevelOneDamage; } 
+    }
+
+    public static int LaserLevelTwoDamage
+    {
+        get { return configurationData.LaserLevelTwoDamage; }
+    }
+
+    public static int LaserLevelThreeDamage
+    {
+        get { return configurationData.LaserLevelThreeDamage; }
+    }
+
+    public static int LaserLevelFourDamage
+    {
+        get { return configurationData.LaserLevelFourDamage; }
+    }
+
+
+    public static int LaserLevelFiveDamage
+    {
+        get { return configurationData.LaserLevelFiveDamage; }
+    }
+
+
 
     #endregion
 

@@ -122,7 +122,7 @@ public class EnemyManager : MonoBehaviour
             {
                 SpawnBoss(bossPrefabs[1]);
             }
-            else if (LevelsUtils.LevelFour)
+            else if (LevelsUtils.LevelFive)
             {
                 SpawnBoss(bossPrefabs[2]);
             }
@@ -134,6 +134,7 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
+            yield return new WaitForSeconds(20f);
             StartSpawning();
         }
 

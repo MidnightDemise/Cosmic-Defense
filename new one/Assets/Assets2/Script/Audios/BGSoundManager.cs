@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BGSoundManager : MonoBehaviour
 {
+    [SerializeField]
+    AudioSource musicAudioSource;
+
     private void Awake()
     {
         if (!AudioManager.BGMusicInitialized)
@@ -16,5 +19,10 @@ public class BGSoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void MusicVolume(float volume)
+    {
+        musicAudioSource.volume = volume;
     }
 }

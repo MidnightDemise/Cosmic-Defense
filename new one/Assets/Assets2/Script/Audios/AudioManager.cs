@@ -63,5 +63,10 @@ public static class AudioManager
     }
 
 
+    public static void SfxVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+
     #endregion
 }

@@ -24,9 +24,13 @@ public class LaserTowerScript : MonoBehaviour
     public bool stun = false;
     public float currentStunTimer = 0f;
 
+    public int laserDamage;
+
 
     void Start()
     {
+        laserDamage = ConfigurationUtils.LaserDamage;
+        
         enemyManager = GameObject.FindGameObjectWithTag("EnemyManager").gameObject.GetComponent<EnemyManager>();
 
         lineRenderer = gameObject.GetComponent<LineRenderer>();
@@ -47,7 +51,7 @@ public class LaserTowerScript : MonoBehaviour
     {
 
         
-        Debug.Log(currentStunTimer);
+        //Debug.Log(currentStunTimer);
 
         if (isStunned())
         {
@@ -130,7 +134,7 @@ public class LaserTowerScript : MonoBehaviour
                 if (collider.gameObject.tag == "GreenShip")
                 {
 
-                    collider.GetComponent<GreenSip>().DamageShip(0.4f);
+                    collider.GetComponent<GreenSip>().DamageShip(laserDamage);
 
 
                 }
@@ -138,13 +142,31 @@ public class LaserTowerScript : MonoBehaviour
 
                 if (collider.gameObject.tag == "YellowShip")
                 {
-                    collider.GetComponent<yelloShip>().DamageShip(0.4f);
+                    collider.GetComponent<yelloShip>().DamageShip(laserDamage);
 
                 }
 
                 if (collider.gameObject.tag == "RedShip")
                 {
-                    collider.GetComponent<RedShip>().DamageShip(0.4f);
+                    collider.GetComponent<RedShip>().DamageShip(laserDamage);
+
+                }
+
+                if (collider.gameObject.tag == "ArmyBoss")
+                {
+                    collider.GetComponent<Boss1Script>().TakeDamage(laserDamage);
+
+                }
+
+                if (collider.gameObject.tag == "LaserBoss")
+                {
+                    collider.GetComponent<LaserBossScript>().TakeDamage(laserDamage);
+
+                }
+
+                if (collider.gameObject.tag == "FishBoss")
+                {
+                    collider.GetComponent<ElectricBossScript>().TakeDamage(laserDamage);
 
                 }
 
