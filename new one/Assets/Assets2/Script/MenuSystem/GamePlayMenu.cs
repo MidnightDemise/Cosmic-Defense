@@ -32,10 +32,22 @@ public class GamePlayMenu : MonoBehaviour
     Button plasmaLauncherButton;
 
     [SerializeField]
-    Image healthBarImage;
+    Button ClockWiseButton;
 
     [SerializeField]
-    Image fillImage;
+    Button CounterClockWiseButton;
+
+    
+    //rotation functionality
+    
+    const float RotateDegreesPerSecond = 180;
+
+    bool clockwiseButtonPressed;
+    bool counterClockwiseButtonPressed;
+    bool upButtonPressed;
+    bool downButtonPressed;
+    
+
 
     #endregion
 
@@ -81,7 +93,7 @@ public class GamePlayMenu : MonoBehaviour
     private void Update()
     {
         currentScore = int.Parse(scoreText.text);
-        if(currentScore > ConfigurationUtils.CanonPrice)
+        if(currentScore >= ConfigurationUtils.CanonPrice)
         {
             canonButton.interactable = true;
         }
@@ -90,7 +102,7 @@ public class GamePlayMenu : MonoBehaviour
             canonButton.interactable = false;
         }
 
-        if (currentScore > ConfigurationUtils.GravityLauncherPrice)
+        if (currentScore >= ConfigurationUtils.GravityLauncherPrice)
         {
             gravityLauncherButton.interactable = true;
         }
@@ -99,7 +111,7 @@ public class GamePlayMenu : MonoBehaviour
             gravityLauncherButton.interactable = false;
         }
 
-        if (currentScore > ConfigurationUtils.LaserTowerPrice)
+        if (currentScore >= ConfigurationUtils.LaserTowerPrice)
         {
             laserTowerButton.interactable = true;
         }
@@ -108,7 +120,7 @@ public class GamePlayMenu : MonoBehaviour
             laserTowerButton.interactable = false;
         }
 
-        if (currentScore > ConfigurationUtils.MissileLauncherPrice)
+        if (currentScore >= ConfigurationUtils.MissileLauncherPrice)
         {
             missileLauncherButton.interactable = true;
         }
@@ -116,7 +128,7 @@ public class GamePlayMenu : MonoBehaviour
         {
             missileLauncherButton.interactable = false;
         }
-        if (currentScore > ConfigurationUtils.PlasmaLauncherPrice)
+        if (currentScore >= ConfigurationUtils.PlasmaLauncherPrice)
         {
             plasmaLauncherButton.interactable = true;
         }
@@ -145,14 +157,14 @@ public class GamePlayMenu : MonoBehaviour
 
     public void HandleBuildButtonClicked()
     {
-        healthBarImage.GetComponent<Image>().enabled = false;
-        fillImage.GetComponent<Image>().enabled = false;
+        ClockWiseButton.enabled = false;
+        CounterClockWiseButton.enabled = false;
     }
 
     public void HandleReturnButtonClicked()
     {
-        healthBarImage.GetComponent <Image>().enabled = true;
-        fillImage.GetComponent<Image>().enabled = true;
+        ClockWiseButton.enabled = true;
+        CounterClockWiseButton.enabled = true;
     }
 
     void AddPoints(int points)
@@ -166,4 +178,38 @@ public class GamePlayMenu : MonoBehaviour
         score -= cost;
         scoreText.text = score.ToString();
     }
+
+    public void HandleClockwiseButtonPressed()
+    {
+        float rotationAmount = RotateDegreesPerSecond * Time.timeScale;
+        rotationAmount *= -1;
+        transform.Rotate(Vector3.forward, rotationAmount);
+        clockwiseButtonPressed = true;
+
+    }
+
+    public void HandleClockwiseButtonReleased()
+    {
+        clockwiseButtonPressed = false;
+
+    }
+
+    public void HandleCounterClockwiseButtonPressed()
+    {
+        counterClockwiseButtonPressed = true;
+    }
+    public void HandleCounterClockwiseButtonReleased()
+    {
+        counterClockwiseButtonPressed = false;
+    }
+    public void HandleUpButtonPressed()
+    {
+        upButtonPressed = true;
+    }
+
+    public void HandleUpButtonReleased()
+    {
+        upButtonPressed = false;
+    }
+
 }

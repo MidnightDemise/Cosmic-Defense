@@ -16,12 +16,68 @@ public class ConfigurationData
         new Dictionary<ConfigurationDataValueName, int>();
 
     // configuration for enemy 
-    int enemyHealth = 50;
-    int levelOneEnemyHealth = 60;
-    int levelTwoEnemyHealth = 70;
-    int levelThreeEnemyHealth = 80;
-    int levelFourEnemyHealth = 90;
-    int levelFiveEnemyHealth = 100;
+    //int greenEnemyHealth = 50;
+    //int yellowEnemyHealth = 75;
+    //int redEnemyHealth = 110;
+    //int levelOneGreenEnemyHealth = 50;
+    //int levelTwoGreenEnemyHealth = 100;
+    //int levelThreeGreenEnemyHealth = 220;
+    //int levelFourGreenEnemyHealth = 400;
+    //int levelFiveGreenEnemyHealth = 620;
+    //int levelOneYellowEnemyHealth = 75;
+    //int levelTwoYellowEnemyHealth = 175;
+    //int levelThreeYellowEnemyHealth = 350;
+    //int levelFourYellowEnemyHealth = 520;
+    //int levelFiveYellowEnemyHealth = 650;
+    //int levelOneRedEnemyHealth = 110;
+    //int levelTwoRedEnemyHealth = 250;
+    //int levelThreeRedEnemyHealth = 375;
+    //int levelFourRedEnemyHealth = 550;
+    //int levelFiveRedEnemyHealth = 675;
+    //int canonLevelOneDamage = 50;
+    //int canonLevelTwoDamage = 75;
+    //int canonLevelThreeDamage = 100;
+    //int canonLevelFourDamage = 125;
+    //int canonLevelFiveDamage = 150;
+    //int missileLauncherLevelOneDamage = 75;
+    //int missileLauncherLevelTwoDamage = 125;
+    //int missileLauncherLevelThreeDamage = 150;
+    //int missileLauncherLevelFourDamage = 170;
+    //int missileLauncherLevelFiveDamage = 175;
+    //int laserLevelOneDamage = 1;
+    //int laserLevelTwoDamage = 1;
+    //int laserLevelThreeDamage = 1;
+    //int laserLevelFourDamage = 1;
+    //int laserLevelFiveDamage = 1;
+    //int megaLaserLevelOneDamage = 120;
+    //int megaLaserLevelTwoDamage = 220;
+    //int megaLaserLevelThreeDamage = 320;
+    //int levelOneGreenShipPoints = 25;
+    //int levelTwoGreenShipPoints = 50;
+    //int levelThreeGreenShipPoints = 75;
+    //int levelFourGreenShipPoints = 100;
+    //int levelFiveGreenShipPoints = 125;
+    //int levelOneYellowShipPoints = 50;
+    //int LevelTwoYellowShipPoints = 75;
+    //int levelThreeYellowShipPoints = 100;
+    //int levelFourYellowShipPoints = 125;
+    //int levelFiveYellowShipPoints = 150;
+    //int levelOneRedShipPoints = 125;
+    //int levelTwoRedShipPoints = 150;
+    //int levelThreeRedShipPoints = 175;
+    //int levelFourRedShipPoints = 200;
+    //int LevelFiveRedShipPoints = 225;
+    //int CanonPrice = 150;
+    //int GravityLauncherPrice = 250;
+    //int LaserTowerPrice = 2000;
+    //int missileLauncherPrice = 500;
+    //int plasmaLauncherPrice = 1000;
+    //int levelOneStartingScore = 200;
+    //int levelTwoStartingScore = 500;
+    //int levelThreeStartingScore = 1500;
+    //int levelFourStartingScore = 3000;
+    //int levelFiveStartingScore = 5000;
+    
 
     #endregion
 
@@ -478,6 +534,11 @@ public class ConfigurationData
         values.Add(ConfigurationDataValueName.MissileLauncherLevelThreeDamage, 90);
         values.Add(ConfigurationDataValueName.MissileLauncherLevelFourDamage, 100);
         values.Add(ConfigurationDataValueName.MissileLauncherLevelFiveDamage, 130);
+        values.Add(ConfigurationDataValueName.LaserLevelOneDamage, 1);
+        values.Add(ConfigurationDataValueName.LaserLevelTwoDamage, 1);
+        values.Add(ConfigurationDataValueName.LaserLevelThreeDamage, 1);
+        values.Add(ConfigurationDataValueName.LaserLevelFourDamage, 1);
+        values.Add(ConfigurationDataValueName.LaserLevelFiveDamage, 1);
         values.Add(ConfigurationDataValueName.MegaLaserLevelOneDamage, 120);
         values.Add(ConfigurationDataValueName.MegaLaserLevelTwoDamage, 220);
         values.Add(ConfigurationDataValueName.MegaLaserLevelThreeDamage, 320);
@@ -498,7 +559,7 @@ public class ConfigurationData
         values.Add(ConfigurationDataValueName.LevelFiveRedShipPoints, 225);
         values.Add(ConfigurationDataValueName.CanonPrice, 150);
         values.Add(ConfigurationDataValueName.GravityLauncherPrice, 250);
-        values.Add(ConfigurationDataValueName.LaserTowerPrice, 350);
+        values.Add(ConfigurationDataValueName.LaserTowerPrice, 2000);
         values.Add(ConfigurationDataValueName.MissileLauncherPrice, 500);
         values.Add(ConfigurationDataValueName.PlasmaLauncherPrice, 1000);
         values.Add(ConfigurationDataValueName.LevelOneStartingScore, 200);

@@ -7,10 +7,43 @@ public class LevelComplete : MonoBehaviour
     public int levelToUnlock;
     int numberOfUnlockedLevels;
 
+    bool audioPlayed = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.Play(ClipName.UpgradeButtonClick);
+
+        if (!audioPlayed)
+        {
+            Debug.Log("Hi");
+            if (LevelsUtils.LevelOne)
+            {
+                
+                AudioManager.Play(ClipName.WaitTillLevel3);
+            }
+            else if (LevelsUtils.LevelTwo)
+            {
+                AudioManager.Play(ClipName.WrymDestroyHim);
+            }
+            else if (LevelsUtils.LevelThree)
+            {
+                AudioManager.Play(ClipName.CrimsonImCountingOnYou);
+            }
+            else if (LevelsUtils.LevelFour)
+            {
+                AudioManager.Play(ClipName.GalvaShockAttack);
+            }
+            else if (LevelsUtils.LevelFive)
+            {
+                AudioManager.Play(ClipName.Nooooo);
+            }
+        }
+        else
+        {
+            AudioManager.Play(ClipName.UpgradeButtonClick);
+            audioPlayed = true;
+        }
+        
         
     }
 

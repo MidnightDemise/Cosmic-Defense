@@ -25,6 +25,12 @@ public static class MenuManager
             case MenuName.Stages:
                 SceneManager.LoadScene("Stages");
                 break;
+            case MenuName.Info:
+                SceneManager.LoadScene("Info");
+                break;
+            case MenuName.Weapons:
+                SceneManager.LoadScene("Weapons");
+                break;
         }
     }
 }

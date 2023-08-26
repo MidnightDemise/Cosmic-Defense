@@ -134,7 +134,7 @@ public class LaserTowerScript : MonoBehaviour
                 if (collider.gameObject.tag == "GreenShip")
                 {
 
-                    collider.GetComponent<GreenSip>().DamageShip(laserDamage);
+                    collider.GetComponent<GreenSip>().DamageShip(.9f);
 
 
                 }
@@ -142,31 +142,31 @@ public class LaserTowerScript : MonoBehaviour
 
                 if (collider.gameObject.tag == "YellowShip")
                 {
-                    collider.GetComponent<yelloShip>().DamageShip(laserDamage);
+                    collider.GetComponent<yelloShip>().DamageShip(0.9f);
 
                 }
 
                 if (collider.gameObject.tag == "RedShip")
                 {
-                    collider.GetComponent<RedShip>().DamageShip(laserDamage);
+                    collider.GetComponent<RedShip>().DamageShip(0.9f);
 
                 }
 
                 if (collider.gameObject.tag == "ArmyBoss")
                 {
-                    collider.GetComponent<Boss1Script>().TakeDamage(laserDamage);
+                    collider.GetComponent<Boss1Script>().TakeDamage(0.9f);
 
                 }
 
                 if (collider.gameObject.tag == "LaserBoss")
                 {
-                    collider.GetComponent<LaserBossScript>().TakeDamage(laserDamage);
+                    collider.GetComponent<LaserBossScript>().TakeDamage(0.9f);
 
                 }
 
                 if (collider.gameObject.tag == "FishBoss")
                 {
-                    collider.GetComponent<ElectricBossScript>().TakeDamage(laserDamage);
+                    collider.GetComponent<ElectricBossScript>().TakeDamage(0.9f);
 
                 }
 

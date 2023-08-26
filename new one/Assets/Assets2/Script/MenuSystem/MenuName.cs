@@ -8,5 +8,7 @@ public enum MenuName
     Levels,
     LevelCompleteScreen,
     Stages,
-    LevelFailedScreen
+    LevelFailedScreen,
+    Info,
+    Weapons
 }

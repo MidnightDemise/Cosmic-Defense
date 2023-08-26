@@ -49,7 +49,15 @@ public static class AudioManager
         audioClips.Add(ClipName.GravityLauncherShot, Resources.Load<AudioClip>("GravityLauncherShot"));
         audioClips.Add(ClipName.EnemyExplode, Resources.Load<AudioClip>("EnemyExplode"));
         audioClips.Add(ClipName.BossEnemyShot, Resources.Load<AudioClip>("BossEnemyShot"));
-
+        audioClips.Add(ClipName.CrimsonImCountingOnYou, Resources.Load<AudioClip>("Crimson Im counting on you"));
+        audioClips.Add(ClipName.Destroyed, Resources.Load<AudioClip>("Destroyed"));
+        audioClips.Add(ClipName.ForDeath, Resources.Load<AudioClip>("For Death"));
+        audioClips.Add(ClipName.GalvaShockAttack, Resources.Load<AudioClip>("GalvaShock Attack"));
+        audioClips.Add(ClipName.Nooooo, Resources.Load<AudioClip>("Nooooo!"));
+        audioClips.Add(ClipName.ThinksHeCanDefeatMe, Resources.Load<AudioClip>("Thinks he can defeat me"));
+        audioClips.Add(ClipName.WhatImpossible, Resources.Load<AudioClip>("What...impossible_1"));
+        audioClips.Add(ClipName.WaitTillLevel3, Resources.Load<AudioClip>("WaitTillLevel3"));
+        audioClips.Add(ClipName.WrymDestroyHim, Resources.Load<AudioClip>("WrymDestroyHim"));
     }
 
     public static void InitializeBGMusic()

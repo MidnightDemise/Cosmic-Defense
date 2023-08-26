@@ -62,6 +62,8 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Play(ClipName.ForDeath);
+        
         greenShipPool = new GameObjectPool(greenShipPrefab, 5);
         yellowShipPool = new GameObjectPool(yellowShipPrefab, 5);
         redShipPool = new GameObjectPool(redShipPrefab, 5);
@@ -84,6 +86,7 @@ public class EnemyManager : MonoBehaviour
 
     private void LevelStart()
     {
+        
         Invoke(nameof(StartSpawning), 10f);
     }
 

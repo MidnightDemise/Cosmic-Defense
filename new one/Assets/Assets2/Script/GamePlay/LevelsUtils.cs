@@ -8,6 +8,8 @@ public static class LevelsUtils
     #region Fields
 
     static Levels levels;
+    static bool levelOne;
+    static bool levelTwo;
     static bool levelThree;
     static bool levelFour;
     static bool levelFive;
@@ -170,6 +172,36 @@ public static class LevelsUtils
         }
     }
 
+    
+    
+    public static bool LevelOne
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelOne:
+                    return levelOne;
+                default: 
+                    return levelTwo;
+            }
+        }
+    }
+
+    public static bool LevelTwo
+    {
+        get
+        {
+            switch (levels)
+            {
+                case Levels.LevelTwo:
+                    return levelTwo;
+                default:
+                    return levelTwo;
+            }
+        }
+    }
+    
     public static bool LevelThree
     {
         get
@@ -314,22 +346,47 @@ public static class LevelsUtils
         levels = name;
         switch (levels)
         {
+            case Levels.LevelOne:
+                levelOne = true;
+                levelTwo = false;
+                levelThree = false;
+                levelFour = false;
+                levelFive = false;
+                break;
+
+            case Levels.LevelTwo:
+                levelOne = false;
+                levelTwo = true;
+                levelThree = false;
+                levelFour = false;
+                levelFive = false;
+                break;
+
+
             case Levels.LevelThree:
+                levelOne = false;
+                levelTwo = false;
                 levelThree = true;
                 levelFour = false;
                 levelFive = false;
                 break;
             case Levels.LevelFour:
+                levelOne = false;
+                levelTwo = false;
                 levelThree = false;
                 levelFour = true;
                 levelFive = false;
                 break;
             case Levels.LevelFive:
+                levelOne = false;
+                levelTwo = false;
                 levelThree = false;
                 levelFour = false;
                 levelFive = true;
                 break;
             default:
+                levelOne = false;
+                levelTwo = false;
                 levelThree = false;
                 levelFour = false;
                 levelFive = false;

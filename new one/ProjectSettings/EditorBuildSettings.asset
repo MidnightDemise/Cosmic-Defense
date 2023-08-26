@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assets2/Scenes/LevelFailedScreen.unity
     guid: 4593976666eb27c4ab470367ecdc28ce
+  - enabled: 1
+    path: Assets/Assets2/Scenes/Info.unity
+    guid: eba61a248581b0a4b888bd094f795271
+  - enabled: 1
+    path: Assets/Assets2/Scenes/Weapons.unity
+    guid: 0e6f979d1bbdb864facfe0c287fc54a6
   m_configObjects: {}

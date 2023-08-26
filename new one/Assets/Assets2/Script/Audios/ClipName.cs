@@ -12,5 +12,16 @@ public enum ClipName
    MissileLauncher,
    GravityLauncherShot,
    EnemyExplode,
-   BossEnemyShot
+   BossEnemyShot,
+   CrimsonImCountingOnYou,
+   Destroyed,
+   ForDeath,
+   GalvaShockAttack,
+   Nooooo,
+   ThinksHeCanDefeatMe,
+   WhatImpossible,
+   WaitTillLevel3,
+   WrymDestroyHim,
+   
+
 }
