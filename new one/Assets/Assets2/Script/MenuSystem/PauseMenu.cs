@@ -28,10 +28,12 @@ public class PauseMenu : MonoBehaviour
 
     public void HandleBackButtonClicked()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         Time.timeScale = 1;
     }
     public void HandlePauseButtonClickEvent()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         Time.timeScale = 0;
     }
 

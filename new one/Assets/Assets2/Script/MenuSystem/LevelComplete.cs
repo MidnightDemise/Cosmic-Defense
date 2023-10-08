@@ -15,7 +15,6 @@ public class LevelComplete : MonoBehaviour
 
         if (!audioPlayed)
         {
-            Debug.Log("Hi");
             if (LevelsUtils.LevelOne)
             {
                 

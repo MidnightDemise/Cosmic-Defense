@@ -157,12 +157,14 @@ public class GamePlayMenu : MonoBehaviour
 
     public void HandleBuildButtonClicked()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         ClockWiseButton.enabled = false;
         CounterClockWiseButton.enabled = false;
     }
 
     public void HandleReturnButtonClicked()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         ClockWiseButton.enabled = true;
         CounterClockWiseButton.enabled = true;
     }
@@ -179,37 +181,6 @@ public class GamePlayMenu : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
-    public void HandleClockwiseButtonPressed()
-    {
-        float rotationAmount = RotateDegreesPerSecond * Time.timeScale;
-        rotationAmount *= -1;
-        transform.Rotate(Vector3.forward, rotationAmount);
-        clockwiseButtonPressed = true;
-
-    }
-
-    public void HandleClockwiseButtonReleased()
-    {
-        clockwiseButtonPressed = false;
-
-    }
-
-    public void HandleCounterClockwiseButtonPressed()
-    {
-        counterClockwiseButtonPressed = true;
-    }
-    public void HandleCounterClockwiseButtonReleased()
-    {
-        counterClockwiseButtonPressed = false;
-    }
-    public void HandleUpButtonPressed()
-    {
-        upButtonPressed = true;
-    }
-
-    public void HandleUpButtonReleased()
-    {
-        upButtonPressed = false;
-    }
+    
 
 }

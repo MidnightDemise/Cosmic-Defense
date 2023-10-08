@@ -134,6 +134,7 @@ public class LaserTowerScript : MonoBehaviour
                 if (collider.gameObject.tag == "GreenShip")
                 {
 
+                    AudioManager.Play(ClipName.LaserShot);
                     collider.GetComponent<GreenSip>().DamageShip(.9f);
 
 
@@ -142,30 +143,35 @@ public class LaserTowerScript : MonoBehaviour
 
                 if (collider.gameObject.tag == "YellowShip")
                 {
+                    AudioManager.Play(ClipName.LaserShot);
                     collider.GetComponent<yelloShip>().DamageShip(0.9f);
 
                 }
 
                 if (collider.gameObject.tag == "RedShip")
                 {
+                    AudioManager.Play(ClipName.LaserShot);
                     collider.GetComponent<RedShip>().DamageShip(0.9f);
 
                 }
 
                 if (collider.gameObject.tag == "ArmyBoss")
                 {
+                    AudioManager.Play(ClipName.LaserShot);
                     collider.GetComponent<Boss1Script>().TakeDamage(0.9f);
 
                 }
 
                 if (collider.gameObject.tag == "LaserBoss")
                 {
+                    AudioManager.Play(ClipName.LaserShot);
                     collider.GetComponent<LaserBossScript>().TakeDamage(0.9f);
 
                 }
 
                 if (collider.gameObject.tag == "FishBoss")
                 {
+                    AudioManager.Play(ClipName.LaserShot);
                     collider.GetComponent<ElectricBossScript>().TakeDamage(0.9f);
 
                 }

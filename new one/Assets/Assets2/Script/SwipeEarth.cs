@@ -120,13 +120,14 @@ public class SwipeEarth : MonoBehaviour
 
     public void StartRotationsClockWise()
     {
-
+        AudioManager.Play(ClipName.MenuButtonClick);
         rotating = true;
         rotationSpeed = -Mathf.Abs(rotationSpeed);
     }
 
     public void StartRotationAnticlockwise()
     {
+        AudioManager.Play(ClipName.MenuButtonClick);
         rotating = true;
         rotationSpeed = Mathf.Abs(rotationSpeed); 
     }

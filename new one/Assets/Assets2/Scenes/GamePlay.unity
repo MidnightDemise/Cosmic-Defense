@@ -2796,6 +2796,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9195196414547867156, guid: 8ab5e908f66eb69418cdfac32037d8e9,
         type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1385077013}
+    - targetCorrespondingSourceObject: {fileID: 9195196414547867156, guid: 8ab5e908f66eb69418cdfac32037d8e9,
+        type: 3}
       insertIndex: -1
       addedObject: {fileID: 1627033353}
     - targetCorrespondingSourceObject: {fileID: 9195196414547867156, guid: 8ab5e908f66eb69418cdfac32037d8e9,
@@ -2814,10 +2818,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1123834356}
-    - targetCorrespondingSourceObject: {fileID: 9195196414547867156, guid: 8ab5e908f66eb69418cdfac32037d8e9,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1385077013}
     - targetCorrespondingSourceObject: {fileID: 9195196414547867156, guid: 8ab5e908f66eb69418cdfac32037d8e9,
         type: 3}
       insertIndex: -1

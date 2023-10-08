@@ -183,7 +183,7 @@ public static class LevelsUtils
                 case Levels.LevelOne:
                     return levelOne;
                 default: 
-                    return levelTwo;
+                    return levelOne;
             }
         }
     }
